@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>JARVIS :: Morning Briefing :: {{DATE}}</title>
+<link href='https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap' rel='stylesheet'>
+<link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'/>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New',monospace;font-size:13px;line-height:1.6;padding:24px;min-height:100vh}.hdr{border-bottom:1px solid #0d2a1a;padding-bottom:12px;margin-bottom:20px}.hdr h1{font-size:17px;letter-spacing:4px;color:#00ff41}.hdr .ts{color:#2a6a3a;font-size:11px;margin-top:4px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}.panel{border:1px solid #0d2a1a;padding:16px;background:#050a05}.ptitle{color:#2a6a3a;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid #0d2a1a;padding-bottom:8px}.row{display:flex;justify-content:space-between;margin-bottom:7px;align-items:baseline}.lbl{color:#2a6a3a}.val{color:#00ff41;font-weight:700}.amber{color:#ffb300}.up{color:#00ff41}.down{color:#ff3333}.hl{color:#ffb300;font-size:11px;margin-bottom:6px;line-height:1.4}.launch-item{margin-bottom:10px}.ln{color:#00ff41;font-weight:700}.ld{color:#ffb300;font-size:11px}.lp{color:#2a6a3a;font-size:10px}.section-lbl{color:#2a6a3a;font-size:10px;letter-spacing:2px;margin-bottom:4px}.dim-row{color:#2a6a3a;font-size:11px;margin-bottom:3px}.pod-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.pod-summary{color:#ffb300;font-size:11px;line-height:1.5;margin-bottom:8px}.conf-row{font-size:11px;margin-bottom:5px;line-height:1.4}.conf-num{color:#ff3333;font-weight:700;margin-right:4px}.conf-loc{color:#ffb300;font-weight:700}.footer{margin-top:18px;border-top:1px solid #0d2a1a;padding-top:8px;color:#1a4a2a;font-size:10px}</style>
+</head>
+<body>
+<div class='hdr'>
+  <div style='display:flex;justify-content:space-between;align-items:baseline'>
+    <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
+    <a href='{{PAGES_URL}}/{{PREV_DATE}}.html' style='color:#2a6a3a;font-size:11px;text-decoration:none'>&#8592; {{PREV_DATE}}</a>
+  </div>
+  <div class='ts'>GENERATED: {{TIMESTAMP}} &nbsp;&middot;&nbsp; BY: {{MODEL}} &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+</div>
+<div class='grid'>
+  <div class='panel'>
+    <div class='ptitle'>// GEOPOLITICAL WATCH</div>
+    <div class='row'><span class='lbl'>IRAN MISSILE EVENTS (24H)</span><span class='val amber'>3</span></div>
+    <div class='hl' style='margin-bottom:8px'>Trump indicates U.S. may leave Iran in 2-3 weeks and urges allies to secure oil supplies.</div>
+    <div class='hl' style='margin-bottom:12px'>Iran attempts to weaponize opioids; reports conflicting with military goals.</div>
+    <div class='section-lbl' style='margin-bottom:6px'>TOP ACTIVE CONFLICT ZONES</div>
+    <div class='conf-row'><span class='conf-num'>①</span> <span class='conf-loc'>Gaza</span> — Israeli airstrikes reported, casualties 40+</div>
+    <div class='conf-row'><span class='conf-num'>②</span> <span class='conf-loc'>Sana'a</span> — Airstrikes in Yemeni city, reports of civilian casualties</div>
+    <div class='conf-row'><span class='conf-num'>③</span> <span class='conf-loc'>Kyiv</span> — Ukrainian forces engaged in defensive measures against Russian incursions</div>
+  </div>
+</div>
+<div class='footer'>JARVIS INTELLIGENCE SYSTEM &nbsp;&middot;&nbsp; AUTO-GENERATED &nbsp;&middot;&nbsp; {{DATE}}</div>
+</body>
+</html>
