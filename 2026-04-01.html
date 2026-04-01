@@ -102,11 +102,11 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
   </div>
   <div class="panel">
     <div class="ptitle">// SPACE INDUSTRY</div>
-    <div class="hl" style="margin-bottom:12px">{{SPACEX_HEADLINE}}</div>
+    <div class="hl" style="margin-bottom:12px">Virgin Galactic on track to resume commercial flights late this year.</div>
     <div class="section-lbl">AEROSPACE IPO PIPELINE</div>
     <div class="dim-row">&middot; Firefly Aerospace &mdash; Nasdaq (FLY), ~$9.8B &mdash; debuted Aug 2025</div>
     <div class="dim-row">&middot; York Space &mdash; NYSE, ~$4.75B &mdash; debuted Jan 2026</div>
-    <div class="dim-row">&middot; SpaceX &mdash; rumored IPO, valuation ~{{SPACEX_VALUATION}}, raising ~{{SPACEX_FLOAT}}</div>
+    <div class="dim-row">&middot; SpaceX &mdash; rumored IPO, valuation ~unconfirmed, raising ~unconfirmed</div>
   </div>
   <div class="panel" style="grid-column:1/-1">
     <div class="ptitle">// GEOPOLITICAL WATCH</div>
@@ -114,19 +114,27 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
       <div>
         <div class="row" style="margin-bottom:8px">
           <span class="lbl">IRAN MISSILE EVENTS (24H)</span>
-          <span class="val amber">{{IRAN_MISSILE_COUNT}}</span>
+          <span class="val amber">0</span>
         </div>
-        <div class="hl" style="margin-bottom:8px">{{TRUMP_HEADLINE}}</div>
-        <div class="hl" style="margin-bottom:12px">{{IRAN_HEADLINE}}</div>
+        <div class="hl" style="margin-bottom:8px">Trump claims work on halted White House ballroom can go on.</div>
+        <div class="hl" style="margin-bottom:12px">Israel to maintain control over parts of southern Lebanon post-war.</div>
         <div class="section-lbl" style="margin-bottom:6px">TOP ACTIVE CONFLICT ZONES</div>
-        {{CONFLICT_BULLETS}}
+        <div class="conf-row"><span class="conf-num">①</span> <span class="conf-loc">Gaza/Israel</span> — conflict continues</div>
+        <div class="conf-row"><span class="conf-num">②</span> <span class="conf-loc">Kyiv/Ukraine</span> — ongoing Ukraine-Russia tensions</div>
+        <div class="conf-row"><span class="conf-num">③</span> <span class="conf-loc">Sana'a/Yemen</span> — Houthi attacks persist</div>
+        <div class="conf-row"><span class="conf-num">④</span> <span class="conf-loc">South Lebanon</span> — tensions with Israel escalate</div>
+        <div class="conf-row"><span class="conf-num">⑤</span> <span class="conf-loc">Baghdad/Iraq</span> — U.S. ties to local militia groups under scrutiny</div>
       </div>
       <div>
         <div id="czmap" style="width:100%;height:280px;border:1px solid #1a3a1a;border-radius:2px"></div>
         <script>
         var czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:false,attributionControl:false,scrollWheelZoom:false});
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
-        {{CONFLICT_MARKERS}}
+        L.marker([31.5, 34.5],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ff6633;white-space:nowrap;margin-top:-1px">Gaza/Israel</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
+        L.marker([50.4, 30.5],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ff6633;white-space:nowrap;margin-top:-1px">Kyiv/Ukraine</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
+        L.marker([15.4, 44.2],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ff6633;white-space:nowrap;margin-top:-1px">Sana'a/Yemen</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
+        L.marker([33.5, 35.5],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ff6633;white-space:nowrap;margin-top:-1px">South Lebanon</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
+        L.marker([33.3, 44.4],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ff6633;white-space:nowrap;margin-top:-1px">Baghdad/Iraq</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
         setTimeout(function(){czmap.invalidateSize();},200);
         </script>
       </div>
@@ -137,21 +145,21 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <div class="pod-grid">
       <div>
         <div class="section-lbl">MOONSHOTS — PETER DIAMANDIS</div>
-        <div class="ln">{{MOONSHOTS_TITLE}} {{MOONSHOTS_NEW}}</div>
-        <div class="ld">{{MOONSHOTS_DATE}} &nbsp;&middot;&nbsp; <a href="{{MOONSHOTS_URL}}" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="ln">NOT AVAILABLE</div>
+        <div class="ld">NOT AVAILABLE</div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">{{MOONSHOTS_EXEC_SUMMARY}}</div>
+        <div class="pod-summary">NOT AVAILABLE</div>
         <div class="section-lbl">KEY TOPICS</div>
-        {{MOONSHOTS_TOPIC_ROWS}}
+        <div class="dim-row">① Topic — one-sentence key claim</div>
       </div>
       <div>
         <div class="section-lbl">ALL-IN PODCAST</div>
-        <div class="ln">{{ALLIN_TITLE}} {{ALLIN_NEW}}</div>
-        <div class="ld">{{ALLIN_DATE}} &nbsp;&middot;&nbsp; <a href="{{ALLIN_URL}}" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="ln">NOT AVAILABLE</div>
+        <div class="ld">NOT AVAILABLE</div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">{{ALLIN_EXEC_SUMMARY}}</div>
+        <div class="pod-summary">NOT AVAILABLE</div>
         <div class="section-lbl">KEY TOPICS</div>
-        {{ALLIN_TOPIC_ROWS}}
+        <div class="dim-row">① Topic — one-sentence key claim</div>
       </div>
     </div>
   </div>
@@ -170,7 +178,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
       var h=Math.floor((t%86400000)/3600000);
       var m=Math.floor((t%3600000)/60000);
       var s=Math.floor((t%60000)/1000);
-      cd.textContent='T\u2212'+d+'d '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+      cd.textContent='T1'+d+'d '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
     });
   }
   tick();setInterval(tick,1000);
