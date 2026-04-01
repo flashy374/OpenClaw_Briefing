@@ -170,7 +170,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
       var h=Math.floor((t%86400000)/3600000);
       var m=Math.floor((t%3600000)/60000);
       var s=Math.floor((t%60000)/1000);
-      cd.textContent='T'+d+'d '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+      cd.textContent='T\u2212'+d+'d '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
     });
   }
   tick();setInterval(tick,1000);
