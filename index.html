@@ -1,174 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JARVIS :: Morning Briefing :: 2026-03-31</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New',monospace;font-size:13px;line-height:1.6;padding:24px;min-height:100vh}
-.hdr{border-bottom:1px solid #0d2a1a;padding-bottom:12px;margin-bottom:20px}
-.hdr h1{font-size:17px;letter-spacing:4px;color:#00ff41}
-.hdr .ts{color:#2a6a3a;font-size:11px;margin-top:4px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-.panel{border:1px solid #0d2a1a;padding:16px;background:#050a05}
-.ptitle{color:#2a6a3a;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid #0d2a1a;padding-bottom:8px}
-.row{display:flex;justify-content:space-between;margin-bottom:7px;align-items:baseline}
-.lbl{color:#2a6a3a}
-.val{color:#00ff41;font-weight:700}
-.amber{color:#ffb300}
-.up{color:#00ff41}
-.down{color:#ff3333}
-.hl{color:#ffb300;font-size:11px;margin-bottom:6px;line-height:1.4}
-.launch-item{margin-bottom:10px}
-.ln{color:#00ff41;font-weight:700}
-.ld{color:#ffb300;font-size:11px}
-.lp{color:#2a6a3a;font-size:10px}
-.section-lbl{color:#2a6a3a;font-size:10px;letter-spacing:2px;margin-bottom:4px}
-.dim-row{color:#2a6a3a;font-size:11px;margin-bottom:3px}
-.pod-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.pod-summary{color:#ffb300;font-size:11px;line-height:1.5;margin-bottom:8px}
-.conf-row{font-size:11px;margin-bottom:5px;line-height:1.4}
-.conf-num{color:#ff3333;font-weight:700;margin-right:4px}
-.conf-loc{color:#ffb300;font-weight:700}
-.footer{margin-top:18px;border-top:1px solid #0d2a1a;padding-top:8px;color:#1a4a2a;font-size:10px}
-</style>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>JARVIS :: Morning Briefing :: {{DATE}}</title>
+<link href='https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap' rel='stylesheet'>
+<link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'/>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New',monospace;font-size:13px;line-height:1.6;padding:24px;min-height:100vh}.hdr{border-bottom:1px solid #0d2a1a;padding-bottom:12px;margin-bottom:20px}.hdr h1{font-size:17px;letter-spacing:4px;color:#00ff41}.hdr .ts{color:#2a6a3a;font-size:11px;margin-top:4px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}.panel{border:1px solid #0d2a1a;padding:16px;background:#050a05}.ptitle{color:#2a6a3a;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid #0d2a1a;padding-bottom:8px}.row{display:flex;justify-content:space-between;margin-bottom:7px;align-items:baseline}.lbl{color:#2a6a3a}.val{color:#00ff41;font-weight:700}.amber{color:#ffb300}.up{color:#00ff41}.down{color:#ff3333}.hl{color:#ffb300;font-size:11px;margin-bottom:6px;line-height:1.4}.launch-item{margin-bottom:10px}.ln{color:#00ff41;font-weight:700}.ld{color:#ffb300;font-size:11px}.lp{color:#2a6a3a;font-size:10px}.section-lbl{color:#2a6a3a;font-size:10px;letter-spacing:2px;margin-bottom:4px}.dim-row{color:#2a6a3a;font-size:11px;margin-bottom:3px}.pod-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.pod-summary{color:#ffb300;font-size:11px;line-height:1.5;margin-bottom:8px}.conf-row{font-size:11px;margin-bottom:5px;line-height:1.4}.conf-num{color:#ff3333;font-weight:700;margin-right:4px}.conf-loc{color:#ffb300;font-weight:700}.footer{margin-top:18px;border-top:1px solid #0d2a1a;padding-top:8px;color:#1a4a2a;font-size:10px}</style>
 </head>
 <body>
-<div class="hdr">
-  <div style="display:flex;justify-content:space-between;align-items:baseline">
+<div class='hdr'>
+  <div style='display:flex;justify-content:space-between;align-items:baseline'>
     <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
-    <a href="https://flashy374.github.io/OpenClaw_Briefing/2026-03-30.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-03-30</a>
+    <a href='{{PAGES_URL}}/{{PREV_DATE}}.html' style='color:#2a6a3a;font-size:11px;text-decoration:none'>&#8592; {{PREV_DATE}}</a>
   </div>
-  <div class="ts">GENERATED: 2026-03-31 14:20 UTC &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+  <div class='ts'>GENERATED: {{TIMESTAMP}} &nbsp;&middot;&nbsp; BY: {{MODEL}} &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
 </div>
-<div class="grid">
-  <div class="panel">
-    <div class="ptitle">// ENERGY MARKETS</div>
-    <div class="row"><span class="lbl">BRENT CRUDE</span><span class="val">$106.82/bbl &nbsp;<span class="down">▼5.28%</span></span></div>
-    <div class="row"><span class="lbl">WTI CRUDE</span><span class="val">$102.45/bbl &nbsp;<span class="down">▼0.42%</span></span></div>
-  </div>
-  <div class="panel">
-    <div class="ptitle">// EQUITIES &amp; RATES</div>
-    <div class="row"><span class="lbl">S&amp;P 500</span><span class="val">6436.46 &nbsp;<span class="up">▲1.46%</span></span></div>
-    <div class="row"><span class="lbl">S&amp;P SLOPE</span><span class="val"><span class="down">-25.3 pts/day</span></span></div>
-    <div class="row"><span class="lbl">TESLA (TSLA)</span><span class="val">$364.21</span></div>
-    <div class="row"><span class="lbl">30YR MORTGAGE</span><span class="val amber">6.38%</span></div>
-  </div>
-  <div class="panel">
-    <div class="ptitle">// FALCON 9 &mdash; NEXT 3</div>
-    <div class="launch-item">
-      <div class="ln">Falcon 9 Block 5 | Starlink Group 10-44</div>
-      <div class="ld">Mar 30 · 21:15 UTC</div>
-      <div class="lp">Space Launch Complex 40</div>
-    </div>
-    <div class="launch-item">
-      <div class="ln">Falcon 9 Block 5 | Starlink Group 10-58</div>
-      <div class="ld">Apr 02 · 11:52 UTC</div>
-      <div class="lp">Space Launch Complex 40</div>
-    </div>
-    <div class="launch-item">
-      <div class="ln">Falcon 9 Block 5 | Starlink Group 17-35</div>
-      <div class="ld">Apr 02 · 23:03 UTC</div>
-      <div class="lp">Space Launch Complex 4E</div>
-    </div>
-  </div>
-  <div class="panel">
-    <div class="ptitle">// HEAVY LIFTERS</div>
-    <div class="launch-item">
-      <div class="section-lbl">STARSHIP</div>
-      <div class="ln">Starship | Flight 12</div>
-      <div class="ld">Apr 30 · 00:00 UTC</div>
-    </div>
-    <div class="launch-item">
-      <div class="section-lbl">ARTEMIS</div>
-      <div class="ln">SLS Block 1 | Artemis II</div>
-      <div class="ld">Apr 01 · 22:24 UTC</div>
-    </div>
-    <div class="launch-item">
-      <div class="section-lbl">NEW GLENN</div>
-      <div class="ln">New Glenn | BlueBird Block 2 #2</div>
-      <div class="ld">Apr 10 · 00:00 UTC</div>
-    </div>
-  </div>
-  <div class="panel" style="grid-column:1/-1">
-    <div class="ptitle">// GEOPOLITICAL WATCH</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-      <div>
-        <div class="row" style="margin-bottom:8px">
-          <span class="lbl">IRAN MISSILE EVENTS (24H)</span>
-          <span class="val amber">2</span>
-        </div>
-        <div class="hl" style="margin-bottom:8px">Trump signal watch: crude pulled back after remarks that the U.S. is considering control of the Strait of Hormuz, a high-consequence escalation cue for energy and regional security.</div>
-        <div class="hl" style="margin-bottom:12px">Iran watch: reports of an Iranian drone setting a Kuwaiti oil tanker on fire stand out as the sharpest immediate escalation signal in the feeds.</div>
-        <div class="section-lbl" style="margin-bottom:6px">TOP ACTIVE CONFLICT ZONES</div>
-        <div class="conf-row"><span class="conf-num">①</span> <span class="conf-loc">Gaza / Israel</span> — Cancer drug facility, religious site hit in Israeli-US strikes on Iran</div>
-      </div>
-      <div>
-        <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;background:#0d1a0d;border:1px solid #1a3a1a;border-radius:2px">
-          <polygon points="0,0 130,0 130,114 122,130 110,147 50,147 0,107" fill="#05101a"/>
-          <polygon points="86,157 130,157 100,290 82,290" fill="#05101a"/>
-          <polygon points="278,175 380,172 382,196 282,198" fill="#05101a"/>
-          <ellipse cx="318" cy="89" rx="28" ry="18" fill="#05101a"/>
-          <polygon points="190,265 360,260 480,270 480,300 0,300 0,280" fill="#05101a"/>
-          <line x1="252" y1="90" x2="252" y2="200" stroke="#1a3a1a" stroke-width="0.8"/>
-          <line x1="100" y1="107" x2="260" y2="107" stroke="#1a3a1a" stroke-width="0.8"/>
-          <line x1="150" y1="250" x2="370" y2="250" stroke="#1a3a1a" stroke-width="0.8"/>
-          <text x="28" y="78" fill="#1a3a1a" font-family="monospace" font-size="8">TURKEY</text>
-          <text x="264" y="140" fill="#1a3a1a" font-family="monospace" font-size="8">IRAN</text>
-          <text x="164" y="215" fill="#1a3a1a" font-family="monospace" font-size="8">SAUDI ARABIA</text>
-          <text x="215" y="275" fill="#1a3a1a" font-family="monospace" font-size="7">YEMEN</text>
-          <text x="50" y="185" fill="#1a3a1a" font-family="monospace" font-size="8">EGYPT</text>
-          <text x="170" y="140" fill="#1a3a1a" font-family="monospace" font-size="8">IRAQ</text>
-          <text x="100" y="125" fill="#1a3a1a" font-family="monospace" font-size="8">SYRIA</text>
-          <text x="58" y="228" fill="#1a3a1a" font-family="monospace" font-size="7">RED SEA</text>
-          <text x="298" y="192" fill="#1a3a1a" font-family="monospace" font-size="7">GULF</text>
-          <text x="110" y="147" font-size="18" style="text-anchor:middle">🔥</text><text x="110" y="161" font-family="monospace" font-size="7" fill="#ff6633" text-anchor="middle">Gaza / Israel</text>
-        </svg>
-      </div>
-    </div>
-  </div>
-  <div class="panel">
-    <div class="ptitle">// SPACE INDUSTRY</div>
-    <div class="hl" style="margin-bottom:12px">Firefly’s public-market debut dominates the space-business feed mix today, while Starship remains the main operational milestone to watch.</div>
-    <div class="section-lbl">AEROSPACE IPO PIPELINE</div>
-    <div class="dim-row">· Firefly Aerospace — Nasdaq (FLY), ~$9.8B — debuted Aug 2025</div>
-    <div class="dim-row">· York Space — NYSE, ~$4.75B — debuted Jan 2026</div>
-    <div class="dim-row">· SpaceX — rumored IPO, valuation ~$1.75T, raising ~$75B</div>
-  </div>
-  <div class="panel" style="grid-column:1/-1">
-    <div class="ptitle">// PODCAST INTELLIGENCE</div>
-    <div class="pod-grid">
-      <div>
-        <div class="section-lbl">MOONSHOTS — PETER DIAMANDIS</div>
-        <div class="ln">Elon Enters the Chip Race, the S&amp;P 500 Repricing, and Human Drivers Will Become Illegal | EP #242 </div>
-        <div class="ld">2026-03-26 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=wMLcIWLlcWg" style="color:#2a6a3a">&#9654; watch</a></div>
-        <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">Moonshots with Peter Diamandis — "Elon Enters the Chip Race, the S&amp;P 500 Repricing, and Human Drivers Will Become Illegal | EP #242" — The episode argues that AI-scale compute, autonomy, and robotics are converging into a single repricing event across transport, labor, and capital markets. The panel treats Elon’s proposed terawatt-scale chip manufacturing push as the clearest signal that compute supply, not just models, will define the next phase of the AI race. It also frames robotaxis and eVTOLs as city-shaping technologies rather than niche products, with knock-on effects for real estate, jobs, and regulation. Why it matters: it’s a compact map of the bull-case worldview linking infrastructure, automation, and space into one abundance thesis.</div>
-        <div class="section-lbl">KEY TOPICS</div>
-        <div class="dim-row">① TeraFab and compute scale — the hosts portray terawatt-scale chip output as the bottleneck-breaker for the next AI wave.</div>
-        <div class="dim-row">② Capital-market repricing — they argue public markets still underprice the deflationary shock from autonomy and machine labor.</div>
-        <div class="dim-row">③ Robotaxis and eVTOLs — autonomous fleets are framed as a direct threat to human driving and a redesign lever for cities.</div>
-        <div class="dim-row">④ Machines that build machines — the discussion links industrial automation to faster compounding in both AI and manufacturing.</div>
-        <div class="dim-row">⑤ Space and strategic competition — NASA, SpaceX, and the broader “space race” are presented as downstream beneficiaries of cheaper intelligence and hardware.</div>
-      </div>
-      <div>
-        <div class="section-lbl">ALL-IN PODCAST</div>
-        <div class="ln">Anthropic's Generational Run, OpenAI Panics, AI Moats, Meta Loses Major Lawsuits </div>
-        <div class="ld">2026-03-27 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=4Gmd5UTF4rk" style="color:#2a6a3a">&#9654; watch</a></div>
-        <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">All-In Podcast — "Anthropic's Generational Run, OpenAI Panics, AI Moats, Meta Loses Major Lawsuits" — This episode centers on whether Anthropic has opened a durable lead in frontier AI and whether OpenAI’s response looks like strategic refocus or visible panic. The conversation widens into what real moats in AI might look like once model quality compresses and distribution, enterprise trust, and capital intensity take over. The Meta lawsuit segment adds a second theme: tech giants are facing rising legal and political costs at the same time the AI race is getting more expensive. Why it matters: it’s a sharp snapshot of how investors and operators are starting to separate hype, distribution power, and defensibility in the 2026 AI market.</div>
-        <div class="section-lbl">KEY TOPICS</div>
-        <div class="dim-row">① Anthropic’s surge — the hosts treat Anthropic’s recent run as potentially generational rather than a temporary benchmark lead.</div>
-        <div class="dim-row">② OpenAI pressure response — they debate whether product focus and fundraising moves signal strength or defensive scrambling.</div>
-        <div class="dim-row">③ AI moats and valuation — the episode tests which layers of the stack can keep pricing power as model performance converges.</div>
-        <div class="dim-row">④ Liquidity and the 100x AI moment — they connect private-market enthusiasm to broader claims about AI-driven productivity expansion.</div>
-        <div class="dim-row">⑤ Meta legal exposure — landmark verdicts against Meta are framed as a warning that regulatory and liability risks can hit platform economics fast.</div>
-      </div>
-    </div>
+<div class='grid'>
+  <div class='panel'>
+    <div class='ptitle'>// GEOPOLITICAL WATCH</div>
+    <div class='row'><span class='lbl'>IRAN MISSILE EVENTS (24H)</span><span class='val amber'>3</span></div>
+    <div class='hl' style='margin-bottom:8px'>Trump indicates U.S. may leave Iran in 2-3 weeks and urges allies to secure oil supplies.</div>
+    <div class='hl' style='margin-bottom:12px'>Iran attempts to weaponize opioids; reports conflicting with military goals.</div>
+    <div class='section-lbl' style='margin-bottom:6px'>TOP ACTIVE CONFLICT ZONES</div>
+    <div class='conf-row'><span class='conf-num'>①</span> <span class='conf-loc'>Gaza</span> — Israeli airstrikes reported, casualties 40+</div>
+    <div class='conf-row'><span class='conf-num'>②</span> <span class='conf-loc'>Sana'a</span> — Airstrikes in Yemeni city, reports of civilian casualties</div>
+    <div class='conf-row'><span class='conf-num'>③</span> <span class='conf-loc'>Kyiv</span> — Ukrainian forces engaged in defensive measures against Russian incursions</div>
   </div>
 </div>
-<div class="footer">JARVIS INTELLIGENCE SYSTEM &nbsp;&middot;&nbsp; AUTO-GENERATED &nbsp;&middot;&nbsp; 2026-03-31</div>
+<div class='footer'>JARVIS INTELLIGENCE SYSTEM &nbsp;&middot;&nbsp; AUTO-GENERATED &nbsp;&middot;&nbsp; {{DATE}}</div>
 </body>
 </html>
