@@ -6,6 +6,7 @@
 <title>JARVIS :: Morning Briefing :: {{DATE}}</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New',monospace;font-size:13px;line-height:1.6;padding:24px;min-height:100vh}
@@ -47,47 +48,44 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
 <div class="grid">
   <div class="panel">
     <div class="ptitle">// ENERGY MARKETS</div>
-    <div class="row"><span class="lbl">BRENT CRUDE</span><span class="val">$105.58/bbl &nbsp;<span class="down">-6.38%</span></span></div>
-    <div class="row"><span class="lbl">WTI CRUDE</span><span class="val">$102.83/bbl &nbsp;<span class="down">-0.05%</span></span></div>
+    <div class="row"><span class="lbl">BRENT CRUDE</span><span class="val">${{BRENT}}/bbl &nbsp;<span class="{{BRENT_CHG_CLASS}}">{{BRENT_CHG}}%</span></span></div>
+    <div class="row"><span class="lbl">WTI CRUDE</span><span class="val">${{WTI}}/bbl &nbsp;<span class="{{WTI_CHG_CLASS}}">{{WTI_CHG}}%</span></span></div>
   </div>
   <div class="panel">
     <div class="ptitle">// EQUITIES &amp; RATES</div>
-    <div class="row"><span class="lbl">S&amp;P 500</span><span class="val">6528.52 &nbsp;<span class="up">+2.91%</span></span></div>
-    <div class="row"><span class="lbl">S&amp;P SLOPE</span><span class="val"><span class="down">-23.0 pts/day</span></span></div>
-    <div class="row"><span class="lbl">TESLA (TSLA)</span><span class="val">$371.75</span></div>
-    <div class="row"><span class="lbl">30YR MORTGAGE</span><span class="val amber">6.38%</span></div>
+    <div class="row"><span class="lbl">S&amp;P 500</span><span class="val">{{SP500}} &nbsp;<span class="{{SP500_CHG_CLASS}}">{{SP500_CHG}}%</span></span></div>
+    <div class="row"><span class="lbl">S&amp;P SLOPE</span><span class="val"><span class="{{SP500_SLOPE_CLASS}}">{{SP500_SLOPE}}</span></span></div>
+    <div class="row"><span class="lbl">TESLA (TSLA)</span><span class="val">${{TSLA}} &nbsp;<span class="{{TSLA_CHG_CLASS}}">{{TSLA_CHG}}%</span></span></div>
+    <div class="row"><span class="lbl">30YR MORTGAGE</span><span class="val amber">{{MORTGAGE}}%</span></div>
   </div>
   <div class="panel">
     <div class="ptitle">// FALCON 9 &mdash; NEXT 3</div>
-    <div class="launch-item"><div class="ln">Falcon 9 Block 5 | Starlink Group 10-58</div><div class="ld">Apr 02 · 11:52 UTC</div><div class="lp">Space Launch Complex 40</div></div>
-    <div class="launch-item"><div class="ln">Falcon 9 Block 5 | Starlink Group 17-35</div><div class="ld">Apr 02 · 23:03 UTC</div><div class="lp">Space Launch Complex 4E</div></div>
-    <div class="launch-item"><div class="ln">Falcon 9 Block 5 | Starlink Group 17-21</div><div class="ld">Apr 07 · 02:39 UTC</div><div class="lp">Space Launch Complex 4E</div></div>
+    {{FALCON9_ROWS}}
   </div>
   <div class="panel">
     <div class="ptitle">// HEAVY LIFTERS</div>
     <div class="launch-item">
       <div class="section-lbl">STARSHIP</div>
-      <div class="ln">Starship | Flight 12</div>
-      <div class="ld">Apr 30 · 00:00 UTC</div>
+      <div class="ln">{{STARSHIP_NAME}}</div>
+      <div class="ld">{{STARSHIP_DATE}}</div>
     </div>
     <div class="launch-item">
       <div class="section-lbl">ARTEMIS</div>
-      <div class="ln">SLS Block 1 | Artemis II</div>
-      <div class="ld">Apr 01 · 22:24 UTC</div>
+      <div class="ln">{{ARTEMIS_NAME}}</div>
+      <div class="ld">{{ARTEMIS_DATE}}</div>
     </div>
     <div class="launch-item">
       <div class="section-lbl">NEW GLENN</div>
-      <div class="ln">New Glenn | BlueBird Block 2 #2</div>
-      <div class="ld">Apr 10 · 00:00 UTC</div>
+      <div class="ln">{{NEW_GLENN_NAME}}</div>
+      <div class="ld">{{NEW_GLENN_DATE}}</div>
     </div>
   </div>
   <div class="panel">
     <div class="ptitle">// SPACE INDUSTRY</div>
-    <div class="hl" style="margin-bottom:12px">FAA announces that SpaceX’s next launch of Starship may take place within a week.</div>
+    <div class="hl" style="margin-bottom:12px">{{SPACEX_HEADLINE}}</div>
     <div class="section-lbl">AEROSPACE IPO PIPELINE</div>
-    <div class="dim-row">· Firefly Aerospace — Nasdaq (FLY), ~$9.8B — debuted Aug 2025</div>
-    <div class="dim-row">· York Space — NYSE, ~$4.75B — debuted Jan 2026</div>
-    <div class="dim-row">· SpaceX — rumored IPO, valuation ~unconfirmed, raising ~unconfirmed</div>
+    {{IPO_ROWS}}
+    <div class="dim-row">· SpaceX — rumored IPO, valuation ~{{SPACEX_VALUATION}}, raising ~{{SPACEX_FLOAT}}</div>
   </div>
   <div class="panel" style="grid-column:1/-1">
     <div class="ptitle">// GEOPOLITICAL WATCH</div>
@@ -95,34 +93,20 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
       <div>
         <div class="row" style="margin-bottom:8px">
           <span class="lbl">IRAN MISSILE EVENTS (24H)</span>
-          <span class="val amber">unconfirmed</span>
+          <span class="val amber">{{IRAN_MISSILE_COUNT}}</span>
         </div>
-        <div class="hl" style="margin-bottom:8px">Judge temporarily halts Trump’s $400m White House ballroom project</div>
-        <div class="hl" style="margin-bottom:12px">Trump tells allies ‘get your own oil’, says Iran war could end in 2-3 weeks</div>
+        <div class="hl" style="margin-bottom:8px">{{TRUMP_HEADLINE}}</div>
+        <div class="hl" style="margin-bottom:12px">{{IRAN_HEADLINE}}</div>
         <div class="section-lbl" style="margin-bottom:6px">TOP ACTIVE CONFLICT ZONES</div>
-        <div class="conf-row"><span class="conf-num">①</span> <span class="conf-loc">Gaza</span> — Israeli airstrikes on northern Gaza, 40+ killed</div>
-        <div class="conf-row"><span class="conf-num">②</span> <span class="conf-loc">Sana'a / Yemen</span> — Ongoing clashes with Saudi Arabia.</div>
-        <div class="conf-row"><span class="conf-num">③</span> <span class="conf-loc">Kyiv / Ukraine</span> — Heavy fighting reported in the region.</div>
-        <div class="conf-row"><span class="conf-num">④</span> <span class="conf-loc">South Lebanon</span> — Fierce clashes ongoing with Israeli troops.</div>
-        <div class="conf-row"><span class="conf-num">⑤</span> <span class="conf-loc">Baghdad / Iraq</span> — US journalist kidnapped by Iranian-backed group.</div>
-        <div class="conf-row"><span class="conf-num">⑥</span> <span class="conf-loc">Tehran / Iran</span> — Military targets under examination.</div>
-        <div class="conf-row"><span class="conf-num">⑦</span> <span class="conf-loc">Damascus / Syria</span> — Increased military presence noted.</div>
-        <div class="conf-row"><span class="conf-num">⑧</span> <span class="conf-loc">Baghdad</span> — Ongoing tension and military check points.</div>
+        {{CONFLICT_BULLETS}}
       </div>
       <div>
         <div id="czmap" style="width:100%;height:280px;border:1px solid #1a3a1a;border-radius:2px"></div>
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <script>
         var czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:false,attributionControl:false,scrollWheelZoom:false});
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19}).addTo(czmap);
-        L.marker([31.5, 34.5],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ff6633;white-space:nowrap;margin-top:-1px">Gaza</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
-        L.marker([15.4, 44.2],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ff6633;white-space:nowrap;margin-top:-1px">Sana'a / Yemen</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
-        L.marker([50.4, 30.5],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ff6633;white-space:nowrap;margin-top:-1px">Kyiv / Ukraine</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
-        L.marker([33.5, 35.5],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ffb300;white-space:nowrap;margin-top:-1px">South Lebanon</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
-        L.marker([33.3, 44.4],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ffb300;white-space:nowrap;margin-top:-1px">Baghdad / Iraq</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
-        L.marker([35.7, 51.4],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ffb300;white-space:nowrap;margin-top:-1px">Tehran / Iran</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
-        L.marker([33.5, 36.3],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ffb300;white-space:nowrap;margin-top:-1px">Damascus / Syria</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
-        L.marker([27.2, 56.3],{icon:L.divIcon({className:'',html:'<div style="text-align:center;font-family:monospace;line-height:1"><span style="font-size:10px">💥</span><div style="font-size:7px;color:#ffb300;white-space:nowrap;margin-top:-1px">Bandar Abbas</div></div>',iconSize:[50,22],iconAnchor:[25,11]})}).addTo(czmap);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
+        {{CONFLICT_MARKERS}}
+        setTimeout(function(){czmap.invalidateSize();},200);
         </script>
       </div>
     </div>
@@ -131,30 +115,22 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <div class="ptitle">// PODCAST INTELLIGENCE</div>
     <div class="pod-grid">
       <div>
-        <div class="section-lbl">MOONSHOTS &mdash; PETER DIAMANDIS</div>
-        <div class="ln">Uber vs. Tesla, Robotaxi Timelines, and the End of Human Driving | Uber CEO Dara Khosrowshahi | #243</div>
-        <div class="ld">2022-10-02T18:38:53+00:00 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=fzKVYNBg50E" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="section-lbl">MOONSHOTS — PETER DIAMANDIS</div>
+        <div class="ln">{{MOONSHOTS_TITLE}} {{MOONSHOTS_NEW}}</div>
+        <div class="ld">{{MOONSHOTS_DATE}} &nbsp;&middot;&nbsp; <a href="{{MOONSHOTS_URL}}" style="color:#2a6a3a">&#9654; watch</a></div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">[Moonshots] — "Uber vs. Tesla, Robotaxi Timelines, and the End of Human Driving" — Dara Khosrowshahi joins to discuss the RoboTaxi race, Uber’s hybrid strategy for autonomy, and how self-driving tech could reshape mobility, delivery, and city life.</div>
+        <div class="pod-summary">{{MOONSHOTS_EXEC_SUMMARY}}</div>
         <div class="section-lbl">KEY TOPICS</div>
-        <div class="dim-row">① The RoboTaxi Race — Dara discusses his predictions on job displacement.</div>
-        <div class="dim-row">② Safety Concerns — Addressing concerns of accidents with autonomous vehicles.</div>
-        <div class="dim-row">③ Regulatory Environment — Discussing the hurdles in the path of RoboTaxi implementation.</div>
-        <div class="dim-row">④ Future of Mobility —Impacts on city design and transportation paradigms.</div>
-        <div class="dim-row">⑤ The Role of AI — How AI is shaping the delivery landscape.</div>
+        {{MOONSHOTS_TOPIC_ROWS}}
       </div>
       <div>
         <div class="section-lbl">ALL-IN PODCAST</div>
-        <div class="ln">Anthropic's Generational Run, OpenAI Panics, AI Moats, Meta Loses Major Lawsuits</div>
-        <div class="ld">2022-06-29T20:49:20+00:00 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=4Gmd5UTF4rk" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="ln">{{ALLIN_TITLE}} {{ALLIN_NEW}}</div>
+        <div class="ld">{{ALLIN_DATE}} &nbsp;&middot;&nbsp; <a href="{{ALLIN_URL}}" style="color:#2a6a3a">&#9654; watch</a></div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">[ALL-IN PODCAST] — "Anthropic's Generational Run, OpenAI Panics, AI Moats, Meta Loses Major Lawsuits" — The hosts delve into the current challenges and future potential of AI valuation impacts.</div>
+        <div class="pod-summary">{{ALLIN_EXEC_SUMMARY}}</div>
         <div class="section-lbl">KEY TOPICS</div>
-        <div class="dim-row">① Anthropic’s Rise — Discussion on their rapid growth.</div>
-        <div class="dim-row">② OpenAI’s Challenges — The hosts analyze OpenAI’s recent turmoil.</div>
-        <div class="dim-row">③ Major Lawsuits Against Meta — The implications of ongoing legal issues.</div>
-        <div class="dim-row">④ Future AI Developments — Insights into upcoming trends in AI technology.</div>
-        <div class="dim-row">⑤ Economic Impacts — Discussion on AI's potential impact on the economy.</div>
+        {{ALLIN_TOPIC_ROWS}}
       </div>
     </div>
   </div>
