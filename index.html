@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JARVIS :: Morning Briefing :: 2026-04-03</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<!-- MAP DISABLED
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
--->
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New',monospace;font-size:13px;line-height:1.6;padding:24px;min-height:100vh}
@@ -38,6 +36,11 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
 .conf-row{font-size:11px;margin-bottom:5px;line-height:1.4}
 .conf-num{color:#ff3333;font-weight:700;margin-right:4px}
 .conf-loc{color:#ffb300;font-weight:700}
+.count-link{cursor:pointer;border-bottom:1px dotted currentColor}
+#mapmodal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.87);z-index:9999;align-items:center;justify-content:center}
+#mapmodal.open{display:flex}
+#mapwrap{background:#050a05;border:1px solid #1a3a1a;padding:16px;width:90%;max-width:860px;max-height:88vh;display:flex;flex-direction:column}
+#mapclose{background:none;border:none;color:#ff3333;font-size:20px;cursor:pointer;line-height:1;padding:0 4px}
 .footer{margin-top:18px;border-top:1px solid #0d2a1a;padding-top:8px;color:#1a4a2a;font-size:10px}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 @media(max-width:640px){
@@ -55,7 +58,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
     <a href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-02.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-02</a>
   </div>
-  <div class="ts">GENERATED: 2026-04-03 12:18 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+  <div class="ts">GENERATED: 2026-04-03 12:35 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
 </div>
 <div class="grid">
   <div class="panel">
@@ -131,30 +134,45 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
   </div>
   <div class="panel" style="grid-column:1/-1">
     <div class="ptitle">// GEOPOLITICAL WATCH</div>
-    <div class="row" style="margin-bottom:4px">
+    <div style="margin-bottom:4px">
       <span class="lbl">IRAN OUTGOING LAUNCHES (24H)</span>
-      <span class="val amber">5</span>
+      <span class="val amber count-link" style="margin-left:10px" onclick="openMap()">5</span>
     </div>
-    <div class="row" style="margin-bottom:8px">
+    <div style="margin-bottom:8px">
       <span class="lbl">STRIKES INSIDE IRAN (24H)</span>
-      <span class="val down">2</span>
+      <span class="val down count-link" style="margin-left:10px" onclick="openMap()">2</span>
     </div>
     <div class="hl" style="margin-bottom:8px"><a href='https://thehill.com/policy/international/5815053-austria-defies-trump-war/'>Austria bans US military plans from its airspace</a><a href='https://thehill.com/blogs/in-the-know/5814876-couric-trump-mail-in-voting-order-national-voting-list-part-of-effort-to-scare-election-workers/' class='story-num'>2</a><a href='https://thehill.com/policy/defense/5815014-war-crimes-international-law-letter-us-iran/' class='story-num'>3</a></div>
     <div class="hl" style="margin-bottom:12px"><a href='https://www.timesofisrael.com/in-call-pope-urges-herzog-to-pursue-all-paths-of-dialogue-to-end-iran-war/'>In call, Pope urges Herzog to pursue ‘all paths of dialogue’ to end Iran war</a><a href='https://www.timesofisrael.com/war-crime-amnesty-slams-irans-recruitment-of-children-as-young-as-12-to-basij-militia/' class='story-num'>2</a></div>
     <div class="section-lbl" style="margin-bottom:6px">TOP ACTIVE CONFLICT ZONES</div>
     <div class='conf-row'><span class='conf-num'>①</span> <span class='conf-loc'>Gaza/Israel</span> — Recent violence continues amid geopolitical tensions.</div><div class='conf-row'><span class='conf-num'>②</span> <span class='conf-loc'>Kyiv/Ukraine</span> — Forces engage in strategic operations.</div><div class='conf-row'><span class='conf-num'>③</span> <span class='conf-loc'>Sana'a/Yemen</span> — Humanitarian crises deepen. </div><div class='conf-row'><span class='conf-num'>④</span> <span class='conf-loc'>FILL zone 4</span> — Details pending.</div><div class='conf-row'><span class='conf-num'>⑤</span> <span class='conf-loc'>FILL zone 5</span> — Details pending.</div>
-<!-- MAP DISABLED
-    <div>
-      <div id="czmap" style="width:100%;height:280px;border:1px solid #1a3a1a;border-radius:2px"></div>
-      <script>
-      var czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:false,attributionControl:false,scrollWheelZoom:false});
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
-      {{CONFLICT_MARKERS}}
-      setTimeout(function(){czmap.invalidateSize();},200);
-      </script>
-    </div>
--->
   </div>
+
+<!-- Conflict map modal -->
+<div id="mapmodal" onclick="if(event.target===this)closeMap()">
+  <div id="mapwrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <span style="color:#2a6a3a;font-size:10px;letter-spacing:3px;text-transform:uppercase">// Active Conflict Map</span>
+      <button id="mapclose" onclick="closeMap()">&#x2715;</button>
+    </div>
+    <div id="czmap" style="flex:1;min-height:420px;border:1px solid #1a3a1a;border-radius:2px"></div>
+  </div>
+</div>
+<script>
+var czmap=null;
+function openMap(){
+  var m=document.getElementById('mapmodal');
+  m.classList.add('open');
+  if(!czmap){
+    czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:true,attributionControl:false,scrollWheelZoom:true});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
+    {{CONFLICT_MARKERS}}
+  }
+  setTimeout(function(){czmap.invalidateSize();},200);
+}
+function closeMap(){document.getElementById('mapmodal').classList.remove('open');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();});
+</script>
   <div class="panel" style="grid-column:1/-1">
     <div class="ptitle">// PODCAST INTELLIGENCE</div>
     <div class="pod-grid">
