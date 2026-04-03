@@ -58,7 +58,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
     <a href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-02.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-02</a>
   </div>
-  <div class="ts">GENERATED: 2026-04-03 12:35 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+  <div class="ts">GENERATED: 2026-04-03 13:24 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
 </div>
 <div class="grid">
   <div class="panel">
@@ -160,6 +160,9 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
 </div>
 <script>
 var czmap=null;
+function makeMarker(color,num){
+  return L.divIcon({className:'',html:'<div style="background:'+color+';color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;font-family:monospace;border:2px solid rgba(0,0,0,0.5);box-shadow:0 0 5px '+color+'">'+num+'</div>',iconSize:[22,22],iconAnchor:[11,11]});
+}
 function openMap(){
   var m=document.getElementById('mapmodal');
   m.classList.add('open');
@@ -167,6 +170,8 @@ function openMap(){
     czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:true,attributionControl:false,scrollWheelZoom:true});
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
     L.marker([32.0, 35.0]).addTo(czmap).bindPopup('Israel'); L.marker([50.0, 30.0]).addTo(czmap).bindPopup('Ukraine'); L.marker([15.0, 40.0]).addTo(czmap).bindPopup('Yemen'); L.marker([34.0, 48.0]).addTo(czmap).bindPopup('Iran'); L.marker([32.0, 35.5]).addTo(czmap).bindPopup('Gaza');
+    {{IRAN_OUT_MARKERS}}
+    {{IRAN_IN_MARKERS}}
   }
   setTimeout(function(){czmap.invalidateSize();},200);
 }
