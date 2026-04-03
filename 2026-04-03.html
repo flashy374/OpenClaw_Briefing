@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JARVIS :: Morning Briefing :: 2026-04-03</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!-- MAP DISABLED
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+-->
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New',monospace;font-size:13px;line-height:1.6;padding:24px;min-height:100vh}
+.hdr{border-bottom:1px solid #0d2a1a;padding-bottom:12px;margin-bottom:20px}
+.hdr h1{font-size:17px;letter-spacing:4px;color:#00ff41}
+.hdr .ts{color:#2a6a3a;font-size:11px;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.panel{border:1px solid #0d2a1a;padding:16px;background:#050a05}
+.ptitle{color:#2a6a3a;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid #0d2a1a;padding-bottom:8px}
+.row{display:flex;justify-content:space-between;margin-bottom:7px;align-items:baseline}
+.lbl{color:#2a6a3a}
+.val{color:#00ff41;font-weight:700}
+.amber{color:#ffb300}
+.up{color:#00ff41}
+.down{color:#ff3333}
+.hl{color:#ffb300;font-size:11px;margin-bottom:6px;line-height:1.4}
+.launch-item{margin-bottom:10px}
+.ln{color:#00ff41;font-weight:700}
+.ld{color:#ffb300;font-size:11px}
+.lp{color:#2a6a3a;font-size:10px}
+.section-lbl{color:#2a6a3a;font-size:10px;letter-spacing:2px;margin-bottom:4px}
+.dim-row{color:#2a6a3a;font-size:11px;margin-bottom:3px}
+.pod-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pod-summary{color:#ffb300;font-size:11px;line-height:1.5;margin-bottom:8px}
+.conf-row{font-size:11px;margin-bottom:5px;line-height:1.4}
+.conf-num{color:#ff3333;font-weight:700;margin-right:4px}
+.conf-loc{color:#ffb300;font-weight:700}
+.footer{margin-top:18px;border-top:1px solid #0d2a1a;padding-top:8px;color:#1a4a2a;font-size:10px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){
+  body{padding:12px;font-size:12px}
+  .two-col,.pod-grid{grid-template-columns:1fr}
+  #czmap{height:220px}
+  .panel{padding:12px}
+  .hdr h1{font-size:13px;letter-spacing:2px}
+}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
+    <a href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-02.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-02</a>
+  </div>
+  <div class="ts">GENERATED: 2026-04-03 07:50 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+</div>
+<div class="grid">
+  <div class="panel">
+    <div class="ptitle">// ENERGY MARKETS</div>
+    <div class="row"><span class="lbl">BRENT CRUDE</span><span class="val">$76.92/bbl &nbsp;<span class="down">▼23.96%</span></span></div>
+    <div class="row"><span class="lbl">WTI CRUDE</span><span class="val">$71.52/bbl &nbsp;<span class="down">▼28.57%</span></span></div>
+  </div>
+  <div class="panel">
+    <div class="ptitle">// EQUITIES &amp; RATES</div>
+    <div class="row"><span class="lbl">S&amp;P 500</span><span class="val">$6582.69 &nbsp;<span class="up">▲0.11%</span></span></div>
+    <div class="row"><span class="lbl">S&amp;P SLOPE</span><span class="val"><span class="down">▼14.0 pts/day</span></span></div>
+    <div class="row"><span class="lbl">TESLA (TSLA)</span><span class="val">$360.59 &nbsp;<span class="down">▼5.42%</span></span></div>
+    <div class="row"><span class="lbl">30YR MORTGAGE</span><span class="val amber">6.46%</span></div>
+  </div>
+  <div class="panel">
+    <div class="ptitle">// FALCON 9 &mdash; NEXT 3</div>
+<div class="launch-item" data-launch="2026-04-02T11:55:10Z">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div class="ln">Falcon 9 Block 5 / Starlink Group 10-58</div>
+    <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+  </div>
+  <div class="lp">Apr 02 2026 11:55 UTC &middot; Space Launch Complex 40</div>
+</div>
+<div class="launch-item" data-launch="2026-04-05T23:03:00Z">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div class="ln">Falcon 9 Block 5 / Starlink Group 17-35</div>
+    <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+  </div>
+  <div class="lp">Apr 05 2026 23:03 UTC &middot; Space Launch Complex 4E</div>
+</div>
+<div class="launch-item" data-launch="2026-04-08T12:51:00Z">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div class="ln">Falcon 9 Block 5 / Cygnus CRS-2 NG-24</div>
+    <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+  </div>
+  <div class="lp">Apr 08 2026 12:51 UTC &middot; Space Launch Complex 40</div>
+</div>
+  </div>
+  <div class="panel">
+    <div class="ptitle">// HEAVY LIFTERS</div>
+    <div class="launch-item" data-launch="2026-04-30T00:00:00Z">
+      <div class="section-lbl">STARSHIP</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div class="ln">Starship / Flight 12</div>
+        <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+      </div>
+      <div class="lp">Apr 30 2026 00:00 UTC</div>
+    </div>
+    <div class="launch-item" data-launch="">
+      <div class="section-lbl">ARTEMIS</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div class="ln">No upcoming data</div>
+        <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+      </div>
+      <div class="lp">ISO:TBD</div>
+    </div>
+    <div class="launch-item" data-launch="2026-04-12T10:45:00Z">
+      <div class="section-lbl">NEW GLENN</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div class="ln">New Glenn / BlueBird Block 2 #2</div>
+        <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+      </div>
+      <div class="lp">Apr 12 2026 10:45 UTC</div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="ptitle">// SPACE INDUSTRY</div>
+    <div class="hl" style="margin-bottom:12px">No major SpaceX news today.</div>
+    <div class="section-lbl">AEROSPACE IPO PIPELINE</div>
+    <div class="dim-row">&middot; Firefly Aerospace &mdash; Nasdaq (FLY), ~$9.8B &mdash; debuted Aug 2025</div>
+    <div class="dim-row">&middot; York Space &mdash; NYSE, ~$4.75B &mdash; debuted Jan 2026</div>
+    <div class="dim-row">&middot; SpaceX &mdash; rumored IPO, valuation ~$350B, raising ~unconfirmed</div>
+  </div>
+  <div class="panel" style="grid-column:1/-1">
+    <div class="ptitle">// GEOPOLITICAL WATCH</div>
+    <div class="row" style="margin-bottom:8px">
+      <span class="lbl">IRAN MISSILE EVENTS (24H)</span>
+      <span class="val amber">0</span>
+    </div>
+    <div class="hl" style="margin-bottom:8px">Trump warns military hasn't started destroying Iran yet.</div>
+    <div class="hl" style="margin-bottom:12px">International law experts allege violations in Iran war.</div>
+    <div class="section-lbl" style="margin-bottom:6px">TOP ACTIVE CONFLICT ZONES</div>
+    <div class='conf-row'><span class='conf-num'>①</span> <span class='conf-loc'>Gaza/Israel</span> — Rising health risks as siege continues.</div><div class='conf-row'><span class='conf-num'>②</span> <span class='conf-loc'>Kyiv/Ukraine</span> — Resilience amid ongoing conflict.</div><div class='conf-row'><span class='conf-num'>③</span> <span class='conf-loc'>Sana'a/Yemen</span> — Crisis deepens amidst humanitarian concerns.</div><div class='conf-row'><span class='conf-num'>④</span> <span class='conf-loc'>Iran</span> — Continued military tension and threats.</div><div class='conf-row'><span class='conf-num'>⑤</span> <span class='conf-loc'>Burkina Faso</span> — Military responses to insurgencies.</div>
+<!-- MAP DISABLED
+    <div>
+      <div id="czmap" style="width:100%;height:280px;border:1px solid #1a3a1a;border-radius:2px"></div>
+      <script>
+      var czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:false,attributionControl:false,scrollWheelZoom:false});
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
+      {{CONFLICT_MARKERS}}
+      setTimeout(function(){czmap.invalidateSize();},200);
+      </script>
+    </div>
+-->
+  </div>
+  <div class="panel" style="grid-column:1/-1">
+    <div class="ptitle">// PODCAST INTELLIGENCE</div>
+    <div class="pod-grid">
+      <div>
+        <div class="section-lbl">MOONSHOTS — PETER DIAMANDIS</div>
+        <div class="ln">Uber’s Robotaxi Playbook, End of Human Driving & $10B Bet on Robots | Dara Khosrowshahi (Uber CEO) <span class='amber'>⚡ NEW!!</span></div>
+        <div class="ld">2026-04-02 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=Mh9yC4j0_rI" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
+        <div class="pod-summary">Moonshots with Peter Diamandis — 'Uber’s Robotaxi Playbook, End of Human Driving & $10B Bet on Robots' — Dara discusses the future of mobility and risks taken by tech firms.</div>
+        <div class="section-lbl">KEY TOPICS</div>
+        <div class='dim-row'>① Robotaxis — Autonomy and regulations.</div><div class='dim-row'>② $10B Bet — Future implications for urban transport.</div><div class='dim-row'>③ Safety concerns — Ensuring safe mobility.</div><div class='dim-row'>④ AI integration — Transforming transportation systems.</div>
+      </div>
+      <div>
+        <div class="section-lbl">ALL-IN PODCAST</div>
+        <div class="ln">Anthropic's Generational Run, OpenAI Panics, AI Moats, Meta Loses Major Lawsuits <span class='amber'>⚡ NEW!!</span></div>
+        <div class="ld">2022-06-29 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=4Gmd5UTF4rk" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
+        <div class="pod-summary">All-In Podcast — 'Anthropic's Generational Run, OpenAI Panics, AI Moats' — A round-up of the latest tech updates and implications for the industry.</div>
+        <div class="section-lbl">KEY TOPICS</div>
+        <div class='dim-row'>① AI Booms — Insights into Anthropic's approach.</div><div class='dim-row'>② OpenAI Panic — Exploring the pressures felt in the sector.</div><div class='dim-row'>③ Meta Lawsuits — Discussing major court decisions impacting tech.</div><div class='dim-row'>④ Future Perspectives — Evaluating market shifts from the latest news.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">JARVIS INTELLIGENCE SYSTEM &nbsp;&middot;&nbsp; AUTO-GENERATED &nbsp;&middot;&nbsp; 2026-04-03</div>
+<script>
+(function(){
+  function tick(){
+    document.querySelectorAll('[data-launch]').forEach(function(el){
+      var iso=el.dataset.launch;
+      var cd=el.querySelector('.countdown');
+      if(!cd||!iso||iso===''||iso==='TBD')return;
+      var t=new Date(iso)-Date.now();
+      if(isNaN(t)){return;}
+      if(t<=0){cd.textContent='LAUNCHED';return;}
+      var d=Math.floor(t/86400000);
+      var h=Math.floor((t%86400000)/3600000);
+      var m=Math.floor((t%3600000)/60000);
+      var s=Math.floor((t%60000)/1000);
+      cd.textContent='T\u2212'+d+'d '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    });
+  }
+  tick();setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
