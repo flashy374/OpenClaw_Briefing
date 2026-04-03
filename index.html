@@ -126,7 +126,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
   </div>
   <div class="panel">
     <div class="ptitle">// SPACE INDUSTRY</div>
-    <div class="hl" style="margin-bottom:12px">Latest successful launch scheduled.</div>
+    <div class="hl" style="margin-bottom:12px">No major SpaceX news today.</div>
     <div class="section-lbl">AEROSPACE IPO PIPELINE</div>
     <div class="dim-row">&middot; Firefly Aerospace &mdash; Nasdaq (FLY), ~$9.8B &mdash; debuted Aug 2025</div>
     <div class="dim-row">&middot; York Space &mdash; NYSE, ~$4.75B &mdash; debuted Jan 2026</div>
@@ -136,16 +136,16 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <div class="ptitle">// GEOPOLITICAL WATCH</div>
     <div style="margin-bottom:4px">
       <span class="lbl">IRAN OUTGOING LAUNCHES (24H)</span>
-      <span class="val amber count-link" style="margin-left:10px" onclick="openMap()">5</span>
+      <span class="val amber count-link" style="margin-left:10px" onclick="openMap()">8</span>
     </div>
     <div style="margin-bottom:8px">
       <span class="lbl">STRIKES INSIDE IRAN (24H)</span>
       <span class="val down count-link" style="margin-left:10px" onclick="openMap()">2</span>
     </div>
-    <div class="hl" style="margin-bottom:8px"><a href='https://thehill.com/policy/international/5815053-austria-defies-trump-war/'>Austria bans US military plans from its airspace</a><a href='https://thehill.com/blogs/in-the-know/5814876-couric-trump-mail-in-voting-order-national-voting-list-part-of-effort-to-scare-election-workers/' class='story-num'>2</a><a href='https://thehill.com/policy/defense/5815014-war-crimes-international-law-letter-us-iran/' class='story-num'>3</a></div>
-    <div class="hl" style="margin-bottom:12px"><a href='https://www.timesofisrael.com/in-call-pope-urges-herzog-to-pursue-all-paths-of-dialogue-to-end-iran-war/'>In call, Pope urges Herzog to pursue ‘all paths of dialogue’ to end Iran war</a><a href='https://www.timesofisrael.com/war-crime-amnesty-slams-irans-recruitment-of-children-as-young-as-12-to-basij-militia/' class='story-num'>2</a></div>
+    <div class="hl" style="margin-bottom:8px"><a href='https://thehill.com/opinion/lindseys-lens/5815069-bondi-trump-loyalty-dismissal/'>Pam Bondi fired despite commitment to Trump agenda: loyalty not enough!</a></div>
+    <div class="hl" style="margin-bottom:12px"><a href='https://time.com/6156578/iran-us-fighter-jet-shot-down/'>Iran downs U.S. F-15 jet and hits Gulf refineries as the war rounds its 5th week</a></div>
     <div class="section-lbl" style="margin-bottom:6px">TOP ACTIVE CONFLICT ZONES</div>
-    <div class='conf-row'><span class='conf-num'>①</span> <span class='conf-loc'>Gaza/Israel</span> — Recent violence continues amid geopolitical tensions.</div><div class='conf-row'><span class='conf-num'>②</span> <span class='conf-loc'>Kyiv/Ukraine</span> — Forces engage in strategic operations.</div><div class='conf-row'><span class='conf-num'>③</span> <span class='conf-loc'>Sana'a/Yemen</span> — Humanitarian crises deepen. </div><div class='conf-row'><span class='conf-num'>④</span> <span class='conf-loc'>FILL zone 4</span> — Details pending.</div><div class='conf-row'><span class='conf-num'>⑤</span> <span class='conf-loc'>FILL zone 5</span> — Details pending.</div>
+    <div class='conf-row'>Gaza/Israel: Ongoing clashes.</div><div class='conf-row'>Kyiv/Ukraine: Ukraine slows enemy advances, liberates land.</div><div class='conf-row'>Sana'a/Yemen: Persistent conflict continues.</div><div class='conf-row'>Haifa/Israel: Missile strikes reported.</div><div class='conf-row'>Tehran/Iran: U.S. drone incursions noted.</div>
   </div>
 
 <!-- Conflict map modal -->
@@ -166,7 +166,7 @@ function openMap(){
   if(!czmap){
     czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:true,attributionControl:false,scrollWheelZoom:true});
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
-    {{CONFLICT_MARKERS}}
+    L.marker([32.0, 35.0]).addTo(czmap).bindPopup('Israel'); L.marker([50.0, 30.0]).addTo(czmap).bindPopup('Ukraine'); L.marker([15.0, 40.0]).addTo(czmap).bindPopup('Yemen'); L.marker([34.0, 48.0]).addTo(czmap).bindPopup('Iran'); L.marker([32.0, 35.5]).addTo(czmap).bindPopup('Gaza');
   }
   setTimeout(function(){czmap.invalidateSize();},200);
 }
@@ -178,21 +178,21 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();}
     <div class="pod-grid">
       <div>
         <div class="section-lbl">MOONSHOTS — PETER DIAMANDIS</div>
-        <div class="ln">Uber’s Robotaxi Playbook, End of Human Driving & $10B Bet on Robots | Dara Khosrowshahi (Uber CEO) </div>
+        <div class="ln">Uber’s Robotaxi Playbook, End of Human Driving & $10B Bet on Robots | Dara Khosrowshahi (Uber CEO) <span class='amber'>⚡ NEW!!</span></div>
         <div class="ld">2022-10-02 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=Mh9yC4j0_rI" style="color:#2a6a3a">&#9654; watch</a></div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">Moonshots with Peter Diamandis — “Uber’s Robotaxi Playbook, End of Human Driving & $10B Bet on Robots” — Dara Khosrowshahi discusses the future of autonomous vehicles and robotics in this episode filmed at the 2026 Abundance360 Summit.</div>
+        <div class="pod-summary">Moonshots with Peter Diamandis — ‘Uber’s Robotaxi Playbook’ — This episode discusses the implications of autonomous vehicles and future mobility.</div>
         <div class="section-lbl">KEY TOPICS</div>
-        <div class='dim-row'>① Future of Transportation — Discussion on robotaxi innovations.</div><div class='dim-row'>② Urban Mobility — Challenges and opportunities ahead.</div><div class='dim-row'>③ AI in Delivery Services — Trends and insights.</div><div class='dim-row'>④ Safety Protocols — Addressing public concerns.</div>
+        <div class='dim-row'>① The RoboTaxi Race — Future of Mobility</div><div class='dim-row'>② Safety & Liability in Autonomous Driving</div><div class='dim-row'>③ Regulatory Challenges Ahead</div><div class='dim-row'>④ Market Dynamics of Autonomous Vehicles</div>
       </div>
       <div>
         <div class="section-lbl">ALL-IN PODCAST</div>
-        <div class="ln">Anthropic's Generational Run, OpenAI Panics, AI Moats, Meta Loses Major Lawsuits </div>
+        <div class="ln">Anthropic's Generational Run, OpenAI Panics, AI Moats, Meta Loses Major Lawsuits <span class='amber'>⚡ NEW!!</span></div>
         <div class="ld">2022-06-29 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=4Gmd5UTF4rk" style="color:#2a6a3a">&#9654; watch</a></div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">All-In Podcast — “Anthropic's Generational Run” — The panel discusses tech industry trends, challenges, and the future landscape of AI and its implications on society.</div>
+        <div class="pod-summary">All-In Podcast — ‘Anthropic's Generational Run’ — This episode unpacks the landscape of AI and the competing narratives within the field.</div>
         <div class="section-lbl">KEY TOPICS</div>
-        <div class='dim-row'>① AI Development — The state of competition and creativity.</div><div class='dim-row'>② Valuation Debates — Discussing financial implications in the AI space.</div><div class='dim-row'>③ Legal Challenges — Consequences of social media lawsuits.</div><div class='dim-row'>④ Future Predictions — Navigating uncertainty in tech.</div>
+        <div class='dim-row'>① Competition in AI — Who's Ahead?</div><div class='dim-row'>② Regulatory Impact on AI Development</div><div class='dim-row'>③ Future of AI in Business</div><div class='dim-row'>④ Leadership Philosophy in AI Companies</div>
       </div>
     </div>
   </div>
