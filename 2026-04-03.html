@@ -58,7 +58,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
     <a href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-02.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-02</a>
   </div>
-  <div class="ts">GENERATED: 2026-04-03 13:24 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+  <div class="ts">GENERATED: 2026-04-03 13:40 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
 </div>
 <div class="grid">
   <div class="panel">
@@ -170,8 +170,6 @@ function openMap(){
     czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:true,attributionControl:false,scrollWheelZoom:true});
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
     L.marker([32.0, 35.0]).addTo(czmap).bindPopup('Israel'); L.marker([50.0, 30.0]).addTo(czmap).bindPopup('Ukraine'); L.marker([15.0, 40.0]).addTo(czmap).bindPopup('Yemen'); L.marker([34.0, 48.0]).addTo(czmap).bindPopup('Iran'); L.marker([32.0, 35.5]).addTo(czmap).bindPopup('Gaza');
-    {{IRAN_OUT_MARKERS}}
-    {{IRAN_IN_MARKERS}}
   }
   setTimeout(function(){czmap.invalidateSize();},200);
 }
