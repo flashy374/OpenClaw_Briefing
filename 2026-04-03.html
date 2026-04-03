@@ -58,7 +58,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
     <a href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-02.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-02</a>
   </div>
-  <div class="ts">GENERATED: 2026-04-03 17:23 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+  <div class="ts">GENERATED: 2026-04-03 17:44 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
 </div>
 <div class="grid">
   <div class="panel">
@@ -126,11 +126,11 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
   </div>
   <div class="panel">
     <div class="ptitle">// SPACE INDUSTRY</div>
-    <div class="hl" style="margin-bottom:12px">[text] most significant SpaceX story, or 'No major SpaceX news today.'</div>
+    <div class="hl" style="margin-bottom:12px">Elon Musk calls out $2 trillion SpaceX IPO valuation as 'BS'</div>
     <div class="section-lbl">AEROSPACE IPO PIPELINE</div>
     <div class="dim-row">&middot; Firefly Aerospace &mdash; Nasdaq (FLY), ~$9.8B &mdash; debuted Aug 2025</div>
     <div class="dim-row">&middot; York Space &mdash; NYSE, ~$4.75B &mdash; debuted Jan 2026</div>
-    <div class="dim-row">&middot; SpaceX &mdash; rumored IPO, valuation ~[text] most recent SpaceX valuation e.g. $350B, raising ~[text] SpaceX IPO raise amount, or 'unconfirmed'</div>
+    <div class="dim-row">&middot; SpaceX &mdash; rumored IPO, valuation ~$2 trillion, raising ~unconfirmed</div>
   </div>
   <div class="panel" style="grid-column:1/-1">
     <div class="ptitle">// GEOPOLITICAL WATCH</div>
@@ -142,10 +142,10 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
       <span class="lbl">STRIKES INSIDE IRAN (24H)</span>
       <span class="val down count-link" style="margin-left:10px" onclick="openMap()">11</span>
     </div>
-    <div class="hl" style="margin-bottom:8px">[HTML] <a href='URL'>10-word summary of top Trump story</a> plus optional <a href='URL2' class='story-num'>2</a> badges — use LINKED HEADLINES: TRUMP section for URLs</div>
-    <div class="hl" style="margin-bottom:12px">[HTML] same format as TRUMP_HEADLINE — use LINKED HEADLINES: IRAN section for URLs</div>
+    <div class="hl" style="margin-bottom:8px"><a href='https://thehill.com/homenews/senate/5815671-tillis-jan6-riot-nominee/'>Tillis sets Jan. 6 red line on attorney general nominee</a> <a href='https://thehill.com/homenews/house/5815546-mace-congress-ground-troops/' class='story-num'>2</a></div>
+    <div class="hl" style="margin-bottom:12px"><a href='https://www.timesofisrael.com/iran-shoots-down-us-jet-1-crew-member-rescued-search-for-2nd-ongoing-officials-say/'>Iran shoots down US jet; 1 crew member rescued, search for 2nd ongoing, officials say</a></div>
     <div class="section-lbl" style="margin-bottom:6px">TOP ACTIVE CONFLICT ZONES</div>
-    [HTML] five <div class='conf-row'> blocks — zones: Gaza/Israel, Kyiv/Ukraine, Sana'a/Yemen, plus 2 most active zones from data
+    <div class='conf-row'><span class='conf-num'>1.</span> <span class='conf-loc'>Gaza/Israel</span> — Continued airstrikes and humanitarian crisis. </div><div class='conf-row'><span class='conf-num'>2.</span> <span class='conf-loc'>Kyiv/Ukraine</span> — Ongoing conflict with Russian forces. </div><div class='conf-row'><span class='conf-num'>3.</span> <span class='conf-loc'>Sana'a/Yemen</span> — Civil war escalates with famine concerns. </div><div class='conf-row'><span class='conf-num'>4.</span> <span class='conf-loc'>Khartoum/Sudan</span> — Clashes between military factions. </div><div class='conf-row'><span class='conf-num'>5.</span> <span class='conf-loc'>Beirut/Lebanon</span> — Malicious attacks related to regional tensions.</div>
   </div>
 
 <!-- Conflict map modal -->
@@ -176,7 +176,11 @@ var cityCoords={
   'Tabriz':[38.08,46.30],'Shiraz':[29.61,52.53],'Mashhad':[36.30,59.61],
   'Natanz':[33.72,51.92],'Fordow':[34.86,50.97],'Arak':[34.09,49.69],
   'Bandar Abbas':[27.18,56.27],'Bushehr':[28.92,50.82],'Ahvaz':[31.32,48.67],
+  'Qom':[34.64,50.88],'Yazd':[31.90,54.37],'Kharg':[29.24,50.32],
+  'Abadan':[30.34,48.30],'Dezful':[32.38,48.40],'Hamedan':[34.80,48.51],'Ilam':[33.64,46.43],
   'Kharkiv':[49.99,36.23],'Odessa':[46.48,30.72],'Zaporizhzhia':[47.84,35.14],
+  'Ashdod':[31.82,34.64],'Sidon':[33.56,35.37],'Tyre':[33.27,35.20],
+  'Jubail':[27.00,49.66],'Fujairah':[25.12,56.34],'Aqaba':[29.53,35.00],
   'Amman':[31.96,35.95],'Cairo':[30.04,31.24],'Ankara':[39.93,32.86]
 };
 function renderCities(csvStr,color){
@@ -205,21 +209,21 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();}
     <div class="pod-grid">
       <div>
         <div class="section-lbl">MOONSHOTS — PETER DIAMANDIS</div>
-        <div class="ln">[text] from PODCAST RSS METADATA > MOONSHOTS block > TITLE field [HTML] <span class='amber'>⚡ NEW!!</span> if published within 48h of today, else empty string</div>
-        <div class="ld">[YYYY-MM-DD] from PODCAST RSS METADATA > MOONSHOTS block > PUBLISHED field &nbsp;&middot;&nbsp; <a href="[text] from PODCAST RSS METADATA > MOONSHOTS block > URL field" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="ln">Uber’s Robotaxi Playbook, End of Human Driving &amp; $10B Bet on Robots | Dara Khosrowshahi (Uber CEO) <span class='amber'>⚡ NEW!!</span></div>
+        <div class="ld">2022-10-02 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=Mh9yC4j0_rI" style="color:#2a6a3a">&#9654; watch</a></div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">[text] Moonshots with Peter Diamandis — ‘Episode Title’ — 3-4 sentence summary using CHAPTERS/DESCRIPTION</div>
+        <div class="pod-summary">Moonshots with Peter Diamandis — Uber’s CEO discusses the future of mobility and the integration of autonomy in transport, alongside implications for personal mobility and delivery networks.</div>
         <div class="section-lbl">KEY TOPICS</div>
-        [HTML] four <div class='dim-row'>① topic — claim</div> rows from episode content
+        <div class='dim-row'>① Autonomous Vehicles - A revolution in transportation.</div><div class='dim-row'>② Urban Air Mobility - Flying cars are on the horizon.</div><div class='dim-row'>③ Liability Issues - Legal implications of autonomy.</div><div class='dim-row'>④ Future Market Strategies - How Uber plans to adapt.</div>
       </div>
       <div>
         <div class="section-lbl">ALL-IN PODCAST</div>
-        <div class="ln">[text] from PODCAST RSS METADATA > ALL-IN block > TITLE field [HTML] <span class='amber'>⚡ NEW!!</span> if published within 48h of today, else empty string</div>
-        <div class="ld">[YYYY-MM-DD] from PODCAST RSS METADATA > ALL-IN block > PUBLISHED field &nbsp;&middot;&nbsp; <a href="[text] from PODCAST RSS METADATA > ALL-IN block > URL field" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="ln">Anthropic's Generational Run, OpenAI Panics, AI Moats, Meta Loses Major Lawsuits <span class='amber'>⚡ NEW!!</span></div>
+        <div class="ld">2022-06-29 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=4Gmd5UTF4rk" style="color:#2a6a3a">&#9654; watch</a></div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">[text] All-In Podcast — ‘Episode Title’ — 3-4 sentence summary using CHAPTERS/DESCRIPTION</div>
+        <div class="pod-summary">All-In Podcast — The podcast explores current AI developments and implications for various sectors, alongside legal challenges faced by major tech companies.</div>
         <div class="section-lbl">KEY TOPICS</div>
-        [HTML] four <div class='dim-row'>① topic — claim</div> rows from episode content
+        {{ALLIN_TOPIC_ROWS}}
       </div>
     </div>
   </div>
