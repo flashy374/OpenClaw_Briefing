@@ -58,7 +58,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
     <a href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-02.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-02</a>
   </div>
-  <div class="ts">GENERATED: 2026-04-03 13:40 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+  <div class="ts">GENERATED: 2026-04-03 13:51 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
 </div>
 <div class="grid">
   <div class="panel">
@@ -163,13 +163,38 @@ var czmap=null;
 function makeMarker(color,num){
   return L.divIcon({className:'',html:'<div style="background:'+color+';color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;font-family:monospace;border:2px solid rgba(0,0,0,0.5);box-shadow:0 0 5px '+color+'">'+num+'</div>',iconSize:[22,22],iconAnchor:[11,11]});
 }
+var cityCoords={
+  'Gaza City':[31.50,34.47],'Gaza':[31.50,34.47],'Kyiv':[50.45,30.52],'Kiev':[50.45,30.52],
+  "Sana'a":[15.35,44.21],'Sanaa':[15.35,44.21],'Beirut':[33.89,35.50],'Damascus':[33.51,36.29],
+  'Baghdad':[33.34,44.40],'Erbil':[36.19,44.01],'Mosul':[36.34,43.13],
+  'Tel Aviv':[32.08,34.78],'Jerusalem':[31.77,35.21],'Haifa':[32.82,35.00],'Eilat':[29.56,34.95],
+  'Riyadh':[24.68,46.72],'Jeddah':[21.49,39.19],'Dhahran':[26.26,50.15],
+  'Dubai':[25.20,55.27],'Abu Dhabi':[24.45,54.37],'Sharjah':[25.34,55.39],
+  'Kuwait City':[29.37,47.98],'Doha':[25.29,51.53],'Manama':[26.21,50.59],
+  'Muscat':[23.61,58.59],'Aden':[12.78,45.03],'Hodeidah':[14.80,42.95],
+  'Tehran':[35.69,51.39],'Karaj':[35.83,50.93],'Isfahan':[32.66,51.68],
+  'Tabriz':[38.08,46.30],'Shiraz':[29.61,52.53],'Mashhad':[36.30,59.61],
+  'Natanz':[33.72,51.92],'Fordow':[34.86,50.97],'Arak':[34.09,49.69],
+  'Bandar Abbas':[27.18,56.27],'Bushehr':[28.92,50.82],'Ahvaz':[31.32,48.67],
+  'Kharkiv':[49.99,36.23],'Odessa':[46.48,30.72],'Zaporizhzhia':[47.84,35.14],
+  'Amman':[31.96,35.95],'Cairo':[30.04,31.24],'Ankara':[39.93,32.86]
+};
+function renderCities(csvStr,color){
+  if(!csvStr||csvStr==='')return;
+  csvStr.split(',').map(function(s){return s.trim();}).filter(Boolean).forEach(function(city,i){
+    var c=cityCoords[city];
+    if(c)L.marker(c,{icon:makeMarker(color,String(i+1))}).addTo(czmap).bindPopup(city);
+  });
+}
 function openMap(){
   var m=document.getElementById('mapmodal');
   m.classList.add('open');
   if(!czmap){
     czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:true,attributionControl:false,scrollWheelZoom:true});
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
-    L.marker([32.0, 35.0]).addTo(czmap).bindPopup('Israel'); L.marker([50.0, 30.0]).addTo(czmap).bindPopup('Ukraine'); L.marker([15.0, 40.0]).addTo(czmap).bindPopup('Yemen'); L.marker([34.0, 48.0]).addTo(czmap).bindPopup('Iran'); L.marker([32.0, 35.5]).addTo(czmap).bindPopup('Gaza');
+    L.marker([32.0, 35.0],{icon:makeMarker('#00e5ff','1')}).addTo(czmap).bindPopup('Israel'); L.marker([50.0, 30.0],{icon:makeMarker('#00e5ff','2')}).addTo(czmap).bindPopup('Ukraine'); L.marker([15.0, 40.0],{icon:makeMarker('#00e5ff','3')}).addTo(czmap).bindPopup('Yemen'); L.marker([34.0, 48.0],{icon:makeMarker('#00e5ff','4')}).addTo(czmap).bindPopup('Iran'); L.marker([32.0, 35.5],{icon:makeMarker('#00e5ff','5')}).addTo(czmap).bindPopup('Gaza');
+    renderCities('{{IRAN_OUT_CITIES}}','#ffb300');
+    renderCities('{{IRAN_IN_CITIES}}','#ff3333');
   }
   setTimeout(function(){czmap.invalidateSize();},200);
 }
