@@ -56,9 +56,9 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
 <div class="hdr">
   <div style="display:flex;justify-content:space-between;align-items:baseline">
     <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
-    <a href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-03.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-03</a>
+    <a target="_blank" rel="noopener" href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-03.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-03</a>
   </div>
-  <div class="ts">GENERATED: 2026-04-04 10:50 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+  <div class="ts">GENERATED: 2026-04-04 11:59 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
 </div>
 <div class="grid">
   <div class="panel">
@@ -126,26 +126,28 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
   </div>
   <div class="panel">
     <div class="ptitle">// SPACE INDUSTRY</div>
-    <div class="hl" style="margin-bottom:12px">There have not been any significant developments for SpaceX today.</div>
+    <div class="hl" style="margin-bottom:12px">No major SpaceX news today.</div>
     <div class="section-lbl">AEROSPACE IPO PIPELINE</div>
     <div class="dim-row">&middot; Firefly Aerospace &mdash; Nasdaq (FLY), ~$9.8B &mdash; debuted Aug 2025</div>
     <div class="dim-row">&middot; York Space &mdash; NYSE, ~$4.75B &mdash; debuted Jan 2026</div>
-    <div class="dim-row">&middot; SpaceX &mdash; rumored IPO, valuation ~More than $1 trillion, raising ~$50 billion to $75 billion</div>
+    <div class="dim-row">&middot; SpaceX &mdash; rumored IPO, valuation ~$150 billion, raising ~Unconfirmed</div>
   </div>
   <div class="panel" style="grid-column:1/-1">
     <div class="ptitle">// GEOPOLITICAL WATCH</div>
     <div style="margin-bottom:4px">
       <span class="lbl">IRAN OUTGOING LAUNCHES (24H)</span>
-      <span class="val amber count-link" style="margin-left:10px" onclick="openMap()">14</span>
+      <span class="val amber count-link" style="margin-left:10px" onclick="openMap()">15</span>
     </div>
     <div style="margin-bottom:8px">
       <span class="lbl">STRIKES INSIDE IRAN (24H)</span>
       <span class="val down count-link" style="margin-left:10px" onclick="openMap()">11</span>
     </div>
-    <div class="hl" style="margin-bottom:8px"><a href="https://thehill.com/homenews/space/5816125-artemis-2-crew-moon-mission-nasa/">Trump seeks $152m to reopen notorious Alcatraz prison</a> <a href="https://thehill.com/homenews/space/5816125-artemis-2-crew-moon-mission-nasa/" class="story-num">2</a></div>
-    <div class="hl" style="margin-bottom:12px"><a href="https://www.bbc.com/news/articles/c0le43jw8e9o?at_medium=RSS&at_campaign=rss">Rescue team in Iran face 'harrowing and dangerous' search for US crew member</a></div>
+    <div class="section-lbl" style="margin-bottom:4px">US FOREIGN POLICY / TRUMP</div>
+    <div class="hl" style="margin-bottom:8px"><a target="_blank" rel="noopener" href='https://thehill.com/homenews/campaign/5816212-trump-warns-iran-time-running-out/'>Trump warns Iran: 'Time is running out'</a> <a target="_blank" rel="noopener" href='https://thehill.com/opinion/finance/5814974-middle-class-decline-permanent-crisis/' class='story-num'>2</a></div>
+    <div class="section-lbl" style="margin-top:6px;margin-bottom:4px">MIDDLE EAST / IRAN</div>
+    <div class="hl" style="margin-bottom:12px"><a target="_blank" rel="noopener" href='https://www.bbc.com/news/articles/c0le43jw8e9o'>Rescue team in Iran face 'harrowing and dangerous' search for US crew member</a></div>
     <div class="section-lbl" style="margin-bottom:6px">TOP ACTIVE CONFLICT ZONES</div>
-    <div class='conf-row'><span class='conf-num'>1.</span> <span class='conf-loc'>Gaza/Israel</span> — Israeli strikes continue; damage reported. </div><div class='conf-row'><span class='conf-num'>2.</span> <span class='conf-loc'>Kyiv/Ukraine</span> — Russian attack on market kills five. </div><div class='conf-row'><span class='conf-num'>3.</span> <span class='conf-loc'>Sana'a/Yemen</span> — Ongoing conflict with humanitarian crisis unresolved. </div><div class='conf-row'><span class='conf-num'>4.</span> <span class='conf-loc'>Rostov, Russia</span> — Ukrainian attacks reported. </div><div class='conf-row'><span class='conf-num'>5.</span> <span class='conf-loc'>Tehran, Iran</span> — Unrest reported due to U.S. strikes. </div>
+    <div class='conf-row'><span class='conf-num'>1.</span> <span class='conf-loc'>Gaza/Israel</span> — Increased military presence reported.</div><div class='conf-row'><span class='conf-num'>2.</span> <span class='conf-loc'>Kyiv/Ukraine</span> — Russian attack on market kills five.</div><div class='conf-row'><span class='conf-num'>3.</span> <span class='conf-loc'>Sana'a/Yemen</span> — Ongoing airstrikes reported.</div><div class='conf-row'><span class='conf-num'>4.</span> <span class='conf-loc'>Bandar Lengeh/Iran</span> — US-Israeli strike on food warehouse.</div><div class='conf-row'><span class='conf-num'>5.</span> <span class='conf-loc'>Haifa/Israel</span> — Power outages due to missile debris.</div>
   </div>
 
 <!-- Conflict map modal -->
@@ -196,7 +198,7 @@ function openMap(){
   if(!czmap){
     czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:true,attributionControl:false,scrollWheelZoom:true});
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
-    renderCities('Abu Dhabi,Aden,Aqaba,Beirut,Doha,Dubai,Erbil,Haifa,Kuwait City,Mosul,Muscat,Riyadh,Tel Aviv,Tyre','#ffb300');
+    renderCities('Abu Dhabi,Aden,Aqaba,Ashdod,Beirut,Doha,Dubai,Erbil,Haifa,Kuwait City,Mosul,Muscat,Riyadh,Tel Aviv,Tyre','#ffb300');
     renderCities('Arak,Bandar Abbas,Bushehr,Fordow,Isfahan,Karaj,Kharg,Mashhad,Shiraz,Tabriz,Yazd','#ff3333');
   }
   setTimeout(function(){czmap.invalidateSize();},200);
@@ -210,21 +212,20 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();}
       <div>
         <div class="section-lbl">MOONSHOTS — PETER DIAMANDIS</div>
         <div class="ln">Uber’s Robotaxi Playbook, End of Human Driving & $10B Bet on Robots | Dara Khosrowshahi (Uber CEO) <span class='amber'>⚡ NEW!!</span></div>
-        <div class="ld">2022-10-02 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=Mh9yC4j0_rI" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="ld">2026-04-02 &nbsp;&middot;&nbsp; <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Mh9yC4j0_rI" style="color:#2a6a3a">&#9654; watch</a></div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">Moonshots with Peter Diamandis — 'Episode Title' — In this episode,
-we discuss Uber's advancements in autonomous technology and the future of mobility.</div>
-        <div class="section-lbl">KEY TOPICS</div>
-        <div class='dim-row'>① Autonomous Vehicles — huge implications for transportation.</div><div class='dim-row'>② Flying Cars — the next industrial revolution.</div><div class='dim-row'>③ Urban Mobility — changes in city planning.</div><div class='dim-row'>④ Startups in Transportation — financial opportunities ahead.</div>
+        <div class="pod-summary">Moonshots with Peter Diamandis — 'Uber’s Robotaxi Playbook' — This episode features Dara Khosrowshahi discussing the future of autonomy and the impact of AI on transportation.</div>
+        <div class="section-lbl">KEY OPINIONS / PREDICTIONS</div>
+        <div class='dim-row'>① Uber will lead the charge in the Robotaxi space by focusing on safety and integration.</div><div class='dim-row'>② The transition to flying cars is inevitable and will disrupt traditional mobility.</div><div class='dim-row'>③ Regulations around autonomous vehicles will evolve faster than expected.</div><div class='dim-row'>④ Emotional connection with customers will be key for success.</div><div class='dim-row'>⑤ Uber must navigate labor challenges as automation increases.</div>
       </div>
       <div>
         <div class="section-lbl">ALL-IN PODCAST</div>
         <div class="ln">SpaceX IPO, Iran War Fallout, Quantum Bitcoin Hack, The Space Opportunity <span class='amber'>⚡ NEW!!</span></div>
-        <div class="ld">2022-06-29 &nbsp;&middot;&nbsp; <a href="https://www.youtube.com/watch?v=N-pust8qtGI" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="ld">2026-04-03 &nbsp;&middot;&nbsp; <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=N-pust8qtGI" style="color:#2a6a3a">&#9654; watch</a></div>
         <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
-        <div class="pod-summary">All-In Podcast — 'Episode Title' — In this episode, we dissect the SpaceX IPO alongside the geopolitical landscape affecting global markets.</div>
-        <div class="section-lbl">KEY TOPICS</div>
-        <div class='dim-row'>① SpaceX IPO — a monumental moment in finance.</div><div class='dim-row'>② Iran War — impacts on global diplomacy.</div><div class='dim-row'>③ Quantum Computing — emerging threats.</div><div class='dim-row'>④ Bitcoin Market — shifting trends and expectations.</div>
+        <div class="pod-summary">All-In Podcast — 'SpaceX IPO and the Economic Opportunity of Space' — Discusses the implications of the SpaceX IPO and the fallout from the Iran War on global markets.</div>
+        <div class="section-lbl">KEY OPINIONS / PREDICTIONS</div>
+        <div class='dim-row'>① The SpaceX IPO represents a new frontier in space economics.</div><div class='dim-row'>② Increased funding is necessary for national defense amidst global tensions.</div><div class='dim-row'>③ Artificial intelligence will continue to shape investment strategies.</div><div class='dim-row'>④ Quantum technology could reshape financial transactions.</div><div class='dim-row'>⑤ The geopolitical landscape is shifting rapidly due to technology developments.</div>
       </div>
     </div>
   </div>
