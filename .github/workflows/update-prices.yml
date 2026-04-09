@@ -1,0 +1,55 @@
+name: Update market prices
+
+on:
+  schedule:
+    - cron: '5,35 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch prices
+        run: |
+          python3 - << 'PYEOF'
+          import urllib.request, urllib.parse, json, time
+
+          def fetch(sym):
+              url = ('https://query1.finance.yahoo.com/v8/finance/chart/'
+                     + urllib.parse.quote(sym, safe='')
+                     + '?range=1d&interval=5m')
+              req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+              try:
+                  with urllib.request.urlopen(req, timeout=10) as r:
+                      d = json.loads(r.read())
+                  m = d['chart']['result'][0]['meta']
+                  p, v = m['regularMarketPrice'], m['previousClose']
+                  return {'price': round(p, 2), 'chg': round((p - v) / v * 100, 2)}
+              except Exception as e:
+                  print(f'  {sym}: {e}')
+                  return None
+
+          out = {}
+          for sym, key in [('BZ=F','brent'),('CL=F','wti'),('TSLA','tsla'),('^GSPC','sp500')]:
+              r = fetch(sym)
+              if r:
+                  out[key] = r
+                  print(f'  {key}: {r}')
+
+          out['updated'] = int(time.time())
+          with open('prices.json', 'w') as f:
+              json.dump(out, f)
+          PYEOF
+
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add prices.json
+          git diff --cached --quiet || git commit -m "prices: $(date -u +%H:%M) UTC"
+          git push
