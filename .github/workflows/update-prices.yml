@@ -29,7 +29,8 @@ jobs:
                       d = json.loads(r.read())
                   m = d['chart']['result'][0]['meta']
                   p, v = m['regularMarketPrice'], m['previousClose']
-                  return {'price': round(p, 2), 'chg': round((p - v) / v * 100, 2)}
+                  t = m.get('regularMarketTime', 0)
+                  return {'price': round(p, 2), 'chg': round((p - v) / v * 100, 2), 'time': t}
               except Exception as e:
                   print(f'  {sym}: {e}')
                   return None
