@@ -65,7 +65,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <div class="ptitle">// ENERGY MARKETS</div>
     <div class="row"><span class="lbl">BRENT CRUDE</span><span class="val"><span id="brent-price">$98.23/bbl</span> &nbsp;<span class="up" id="brent-chg">▲3.67%</span></span></div>
     <div class="row"><span class="lbl">WTI CRUDE</span><span class="val"><span id="wti-price">$99.01/bbl</span> &nbsp;<span class="up" id="wti-chg">▲4.87%</span></span></div>
-    <div style="text-align:right;font-size:9px;color:#00ff41;margin-top:4px;letter-spacing:1px" id="mkt-updated"></div>
+    <div style="text-align:right;font-size:9px;color:#00ff41;margin-top:4px;letter-spacing:1px" class="mkt-updated"></div>
   </div>
   <div class="panel">
     <div class="ptitle">// EQUITIES &amp; RATES</div>
@@ -275,8 +275,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();}
     if(mktTime){
       var d=new Date(mktTime*1000);
       var ts=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-      var u=document.getElementById('mkt-updated');
-      if(u)u.textContent='DATA \u21bb '+ts;
+      document.querySelectorAll('.mkt-updated').forEach(function(u){u.textContent='DATA \u21bb '+ts;});
     }
   }
   function run(){fetch('./prices.json?_='+Date.now()).then(function(r){return r.json();}).then(apply).catch(function(){});}
