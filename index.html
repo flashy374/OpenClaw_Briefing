@@ -278,7 +278,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();}
     }
   }
   function run(){fetch('./prices.json?_='+Date.now()).then(function(r){return r.json();}).then(apply).catch(function(){});}
-  run();setInterval(run,30*60*1000);
+  run();setInterval(run,5*60*1000);
 })();
 </script>
 </body>
