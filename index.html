@@ -65,7 +65,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <div class="ptitle">// ENERGY MARKETS</div>
     <div class="row"><span class="lbl">BRENT CRUDE</span><span class="val"><span id="brent-price">$98.23/bbl</span> &nbsp;<span class="up" id="brent-chg">▲3.67%</span></span></div>
     <div class="row"><span class="lbl">WTI CRUDE</span><span class="val"><span id="wti-price">$99.01/bbl</span> &nbsp;<span class="up" id="wti-chg">▲4.87%</span></span></div>
-    <div style="text-align:right;font-size:9px;color:#2a6a3a;margin-top:4px;letter-spacing:1px" id="mkt-updated"></div>
+    <div style="text-align:right;font-size:9px;color:#00ff41;margin-top:4px;letter-spacing:1px" id="mkt-updated"></div>
   </div>
   <div class="panel">
     <div class="ptitle">// EQUITIES &amp; RATES</div>
@@ -254,38 +254,31 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();}
 </script>
 <script>
 (function(){
-  var PROXY='https://api.allorigins.win/raw?url=';
-  var TICKERS=[
-    {sym:'BZ=F',  pid:'brent-price',cid:'brent-chg', suf:'/bbl'},
-    {sym:'CL=F',  pid:'wti-price',  cid:'wti-chg',   suf:'/bbl'},
-    {sym:'TSLA',  pid:'tsla-price', cid:'tsla-chg',  suf:''},
-    {sym:'^GSPC', pid:'sp500-price',cid:'sp500-chg', suf:''}
-  ];
-  var done=0;
-  function fetchTicker(t){
-    var yf='https://query1.finance.yahoo.com/v8/finance/chart/'+encodeURIComponent(t.sym)+'?range=1d&interval=5m';
-    fetch(PROXY+encodeURIComponent(yf)).then(function(r){return r.json();}).then(function(d){
-      var m=d.chart&&d.chart.result&&d.chart.result[0]&&d.chart.result[0].meta;
-      if(!m)return;
-      var p=m.regularMarketPrice,v=m.previousClose;
-      if(!p||!v)return;
-      var c=(p-v)/v*100;
+  var MAP={
+    brent:{pid:'brent-price',cid:'brent-chg',suf:'/bbl'},
+    wti:  {pid:'wti-price',  cid:'wti-chg',  suf:'/bbl'},
+    tsla: {pid:'tsla-price', cid:'tsla-chg', suf:''},
+    sp500:{pid:'sp500-price',cid:'sp500-chg',suf:''}
+  };
+  function apply(data){
+    for(var k in MAP){
+      var t=MAP[k],q=data[k];
+      if(!q)continue;
       var pe=document.getElementById(t.pid),ce=document.getElementById(t.cid);
-      if(!pe||!ce)return;
-      pe.textContent='$'+p.toFixed(2)+t.suf;
-      ce.textContent=(c>=0?'\u25b2':'\u25bc')+Math.abs(c).toFixed(2)+'%';
-      ce.className=c>=0?'up':'down';
-      if(++done>=TICKERS.length){
-        var now=new Date();
-        var ts=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
-        var u=document.getElementById('mkt-updated');
-        if(u)u.textContent='LIVE \u21bb '+ts;
-        done=0;
-      }
-    }).catch(function(){});
+      if(!pe||!ce)continue;
+      pe.textContent='$'+q.price.toFixed(2)+t.suf;
+      ce.textContent=(q.chg>=0?'\u25b2':'\u25bc')+Math.abs(q.chg).toFixed(2)+'%';
+      ce.className=q.chg>=0?'up':'down';
+    }
+    if(data.updated){
+      var d=new Date(data.updated*1000);
+      var ts=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+      var u=document.getElementById('mkt-updated');
+      if(u)u.textContent='LIVE \u21bb '+ts;
+    }
   }
-  function fetchAll(){done=0;TICKERS.forEach(fetchTicker);}
-  fetchAll();setInterval(fetchAll,30*60*1000);
+  function run(){fetch('./prices.json?_='+Date.now()).then(function(r){return r.json();}).then(apply).catch(function(){});}
+  run();setInterval(run,30*60*1000);
 })();
 </script>
 </body>
