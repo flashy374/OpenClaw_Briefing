@@ -270,11 +270,13 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();}
       ce.textContent=(q.chg>=0?'\u25b2':'\u25bc')+Math.abs(q.chg).toFixed(2)+'%';
       ce.className=q.chg>=0?'up':'down';
     }
-    if(data.updated){
-      var d=new Date(data.updated*1000);
+    var mktTime=0;
+    for(var k in MAP){if(data[k]&&data[k].time&&data[k].time>mktTime)mktTime=data[k].time;}
+    if(mktTime){
+      var d=new Date(mktTime*1000);
       var ts=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
       var u=document.getElementById('mkt-updated');
-      if(u)u.textContent='LIVE \u21bb '+ts;
+      if(u)u.textContent='DATA \u21bb '+ts;
     }
   }
   function run(){fetch('./prices.json?_='+Date.now()).then(function(r){return r.json();}).then(apply).catch(function(){});}
