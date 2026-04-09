@@ -65,7 +65,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <div class="ptitle">// ENERGY MARKETS</div>
     <div class="row"><span class="lbl">BRENT CRUDE</span><span class="val"><span id="brent-price">$98.23/bbl</span> &nbsp;<span class="up" id="brent-chg">▲3.67%</span></span></div>
     <div class="row"><span class="lbl">WTI CRUDE</span><span class="val"><span id="wti-price">$99.01/bbl</span> &nbsp;<span class="up" id="wti-chg">▲4.87%</span></span></div>
-    <div style="text-align:right;font-size:9px;color:#1a4a2a;margin-top:4px;letter-spacing:1px" id="mkt-updated"></div>
+    <div style="text-align:right;font-size:9px;color:#2a6a3a;margin-top:4px;letter-spacing:1px" id="mkt-updated"></div>
   </div>
   <div class="panel">
     <div class="ptitle">// EQUITIES &amp; RATES</div>
@@ -254,36 +254,38 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();}
 </script>
 <script>
 (function(){
-  var BASE='https://query1.finance.yahoo.com/v7/finance/quote?symbols=BZ%3DF%2CCL%3DF%2CTSLA%2C%5EGSPC';
-  var PROXY='https://corsproxy.io/?'+encodeURIComponent(BASE);
-  function apply(results){
-    results.forEach(function(q){
-      var p=q.regularMarketPrice,c=q.regularMarketChangePercent,s=q.symbol;
-      var pid,cid,suf;
-      if(s==='BZ=F'){pid='brent-price';cid='brent-chg';suf='/bbl';}
-      else if(s==='CL=F'){pid='wti-price';cid='wti-chg';suf='/bbl';}
-      else if(s==='TSLA'){pid='tsla-price';cid='tsla-chg';suf='';}
-      else if(s==='^GSPC'){pid='sp500-price';cid='sp500-chg';suf='';}
-      else return;
-      var pe=document.getElementById(pid),ce=document.getElementById(cid);
+  var PROXY='https://api.allorigins.win/raw?url=';
+  var TICKERS=[
+    {sym:'BZ=F',  pid:'brent-price',cid:'brent-chg', suf:'/bbl'},
+    {sym:'CL=F',  pid:'wti-price',  cid:'wti-chg',   suf:'/bbl'},
+    {sym:'TSLA',  pid:'tsla-price', cid:'tsla-chg',  suf:''},
+    {sym:'^GSPC', pid:'sp500-price',cid:'sp500-chg', suf:''}
+  ];
+  var done=0;
+  function fetchTicker(t){
+    var yf='https://query1.finance.yahoo.com/v8/finance/chart/'+encodeURIComponent(t.sym)+'?range=1d&interval=5m';
+    fetch(PROXY+encodeURIComponent(yf)).then(function(r){return r.json();}).then(function(d){
+      var m=d.chart&&d.chart.result&&d.chart.result[0]&&d.chart.result[0].meta;
+      if(!m)return;
+      var p=m.regularMarketPrice,v=m.previousClose;
+      if(!p||!v)return;
+      var c=(p-v)/v*100;
+      var pe=document.getElementById(t.pid),ce=document.getElementById(t.cid);
       if(!pe||!ce)return;
-      pe.textContent='$'+p.toFixed(2)+suf;
+      pe.textContent='$'+p.toFixed(2)+t.suf;
       ce.textContent=(c>=0?'\u25b2':'\u25bc')+Math.abs(c).toFixed(2)+'%';
       ce.className=c>=0?'up':'down';
-    });
-    var now=new Date();
-    var ts=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
-    var u=document.getElementById('mkt-updated');
-    if(u)u.textContent='LIVE \u21bb '+ts;
+      if(++done>=TICKERS.length){
+        var now=new Date();
+        var ts=String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+        var u=document.getElementById('mkt-updated');
+        if(u)u.textContent='LIVE \u21bb '+ts;
+        done=0;
+      }
+    }).catch(function(){});
   }
-  function load(url,fb){
-    fetch(url).then(function(r){return r.json();}).then(function(d){
-      var r=d.quoteResponse&&d.quoteResponse.result;
-      if(r&&r.length)apply(r);else if(fb)load(fb,null);
-    }).catch(function(){if(fb)load(fb,null);});
-  }
-  load(BASE,PROXY);
-  setInterval(function(){load(BASE,PROXY);},30*60*1000);
+  function fetchAll(){done=0;TICKERS.forEach(fetchTicker);}
+  fetchAll();setInterval(fetchAll,30*60*1000);
 })();
 </script>
 </body>
