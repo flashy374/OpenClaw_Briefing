@@ -58,7 +58,7 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
     <a target="_blank" rel="noopener" href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-18.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-18</a>
   </div>
-  <div class="ts">GENERATED: 2026-04-19 15:42 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+  <div class="ts">GENERATED: 2026-04-19 16:41 EDT &nbsp;&middot;&nbsp; BY: openai/gpt-4o-mini &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
 </div>
 <div class="grid">
   <div class="panel">
@@ -138,11 +138,11 @@ body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New'
     <div class="ptitle">// GEOPOLITICAL WATCH</div>
     <div style="margin-bottom:4px">
       <span class="lbl">IRAN OUTGOING LAUNCHES (24H)</span>
-      <span class="val amber count-link" style="margin-left:10px" onclick="openMap()">3</span>
+      <span class="val amber count-link" style="margin-left:10px" onclick="openMap()">4</span>
     </div>
     <div style="margin-bottom:8px">
       <span class="lbl">STRIKES INSIDE IRAN (24H)</span>
-      <span class="val down count-link" style="margin-left:10px" onclick="openMap()">0</span>
+      <span class="val down count-link" style="margin-left:10px" onclick="openMap()">1</span>
     </div>
     <div class="section-lbl" style="margin-bottom:4px">US FOREIGN POLICY / TRUMP</div>
     <div class="hl" style="margin-bottom:8px"><a target="_blank" rel="noopener" href='https://www.france24.com/en/amer8'>Trump sending US delegation for Iran talks in Pakistan</a> <a target="_blank" rel="noopener" href='https://thehill.com/homenews/administration/5838681-waltz-defends-trump-iran-strikes/' class='story-num'>2</a></div>
@@ -206,9 +206,9 @@ function openMap(){
   if(!czmap){
     czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:true,attributionControl:false,scrollWheelZoom:true});
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
-    var outUrls={"Abu Dhabi":"https://www.middleeasteye.net/opinion/why-becoming-singapore-means-choosing-comply","Aden":"https://www.middleeasteye.net/news/hamas-rebuffs-trap-disarmament-plan-israeli-violations-stall-ceasefire-process","Dubai":"https://www.middleeasteye.net/opinion/why-becoming-singapore-means-choosing-comply"};var inUrls={};
-    renderCities('Abu Dhabi,Aden,Dubai','#ffb300',outUrls);
-    renderCities('','#ff3333',inUrls);
+    var outUrls={"Abu Dhabi":"https://www.middleeasteye.net/opinion/why-becoming-singapore-means-choosing-comply","Aden":"https://www.middleeasteye.net/news/hamas-rebuffs-trap-disarmament-plan-israeli-violations-stall-ceasefire-process","Dubai":"https://www.middleeasteye.net/opinion/why-becoming-singapore-means-choosing-comply","Tel Aviv":"https://www.timesofisrael.com/milei-netanyahu-announce-tel-aviv-buenos-aires-flights-ink-strategic-isaac-accords/"};var inUrls={"Isfahan":"https://www.middleeasteye.net/live-blog/live-blog-update/iran-denies-ship-capture-says-us-operation-failed"};
+    renderCities('Abu Dhabi,Aden,Dubai,Tel Aviv','#ffb300',outUrls);
+    renderCities('Isfahan','#ff3333',inUrls);
   }
   setTimeout(function(){czmap.invalidateSize();},200);
 }
