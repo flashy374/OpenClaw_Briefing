@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JARVIS :: Morning Briefing :: 2026-04-21</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;color:#00ff41;font-family:'JetBrains Mono','Courier New',monospace;font-size:13px;line-height:1.6;padding:24px;min-height:100vh}
+.hdr{border-bottom:1px solid #0d2a1a;padding-bottom:12px;margin-bottom:20px}
+.hdr h1{font-size:17px;letter-spacing:4px;color:#00ff41}
+.hdr .ts{color:#2a6a3a;font-size:11px;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.panel{border:1px solid #0d2a1a;padding:16px;background:#050a05}
+.ptitle{color:#2a6a3a;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid #0d2a1a;padding-bottom:8px}
+.row{display:flex;justify-content:space-between;margin-bottom:7px;align-items:baseline}
+.lbl{color:#2a6a3a}
+.val{color:#00ff41;font-weight:700}
+.amber{color:#ffb300}
+.up{color:#00ff41}
+.down{color:#ff3333}
+.hl{color:#ffb300;font-size:11px;margin-bottom:6px;line-height:1.4}
+.hl a{color:#ffb300;text-decoration:none}.hl a:hover{text-decoration:underline}
+.story-num{color:#00ff41;font-size:0.75em;vertical-align:super;margin-left:3px;text-decoration:none}.story-num:hover{text-decoration:underline}
+.launch-item{margin-bottom:10px}
+.ln{color:#00ff41;font-weight:700}
+.ld{color:#ffb300;font-size:11px}
+.lp{color:#2a6a3a;font-size:10px}
+.section-lbl{color:#2a6a3a;font-size:10px;letter-spacing:2px;margin-bottom:4px}
+.dim-row{color:#2a6a3a;font-size:11px;margin-bottom:3px}
+.pod-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pod-summary{color:#ffb300;font-size:11px;line-height:1.5;margin-bottom:8px}
+.conf-row{font-size:11px;margin-bottom:5px;line-height:1.4}
+.conf-num{color:#ff3333;font-weight:700;margin-right:4px}
+.conf-loc{color:#ffb300;font-weight:700}
+.count-link{cursor:pointer;border-bottom:1px dotted currentColor}
+#mapmodal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.87);z-index:9999;align-items:center;justify-content:center}
+#mapmodal.open{display:flex}
+#mapwrap{background:#050a05;border:1px solid #1a3a1a;padding:16px;width:90%;max-width:860px;max-height:88vh;display:flex;flex-direction:column}
+#mapclose{background:none;border:none;color:#ff3333;font-size:20px;cursor:pointer;line-height:1;padding:0 4px}
+.footer{margin-top:18px;border-top:1px solid #0d2a1a;padding-top:8px;color:#1a4a2a;font-size:10px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){
+  body{padding:12px;font-size:12px}
+  .two-col,.pod-grid{grid-template-columns:1fr}
+  #czmap{height:220px}
+  .panel{padding:12px}
+  .hdr h1{font-size:13px;letter-spacing:2px}
+}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <h1>&#9607; JARVIS // MORNING BRIEFING</h1>
+    <a target="_blank" rel="noopener" href="https://flashy374.github.io/OpenClaw_Briefing/2026-04-20.html" style="color:#2a6a3a;font-size:11px;text-decoration:none">&#8592; 2026-04-20</a>
+  </div>
+  <div class="ts">GENERATED: 2026-04-21 08:05 EDT &nbsp;&middot;&nbsp; BY: openai-codex/gpt-5.4 &nbsp;&middot;&nbsp; CLASSIFICATION: PERSONAL</div>
+</div>
+<div class="grid">
+  <div class="panel">
+    <div class="ptitle">// ENERGY MARKETS</div>
+    <div class="row"><span class="lbl">BRENT CRUDE</span><span class="val"><span id="brent-price">$90.75/bbl</span> &nbsp;<span class="down" id="brent-chg">▼4.95%</span></span></div>
+    <div class="row"><span class="lbl">WTI CRUDE</span><span class="val"><span id="wti-price">$87.58/bbl</span> &nbsp;<span class="up" id="wti-chg">▲0.18%</span></span></div>
+    <div style="text-align:right;font-size:9px;color:#00ff41;margin-top:4px;letter-spacing:1px" class="mkt-updated"></div>
+  </div>
+  <div class="panel">
+    <div class="ptitle">// EQUITIES &amp; RATES</div>
+    <div class="row"><span class="lbl">S&amp;P 500</span><span class="val"><span id="sp500-price">$7109.14</span> &nbsp;<span class="down" id="sp500-chg">▼0.24%</span></span></div>
+    <div class="row"><span class="lbl">S&amp;P SLOPE</span><span class="val"><span class="up">▲52.4 pts/day</span></span></div>
+    <div class="row"><span class="lbl">TESLA (TSLA)</span><span class="val"><span id="tsla-price">$392.5</span> &nbsp;<span class="down" id="tsla-chg">▼2.03%</span></span></div>
+    <div class="row"><span class="lbl">30YR MORTGAGE</span><span class="val amber">6.30%&nbsp;<span class="down">▼7bps</span></span></div>
+    <div style="text-align:right;font-size:9px;color:#00ff41;margin-top:4px;letter-spacing:1px" class="mkt-updated"></div>
+  </div>
+  <div class="panel">
+    <div class="ptitle">// FALCON 9 &mdash; NEXT 3</div>
+<div class="launch-item" data-launch="2026-04-21T06:53:25Z">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div class="ln">Falcon 9 Block 5 / GPS III SV10</div>
+    <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+  </div>
+  <div class="lp">Apr 21 2026 06:53 UTC &middot; Space Launch Complex 40</div>
+</div>
+<div class="launch-item" data-launch="2026-04-23T02:00:00Z">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div class="ln">Falcon 9 Block 5 / Starlink Group 17-14</div>
+    <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+  </div>
+  <div class="lp">Apr 23 2026 02:00 UTC &middot; Space Launch Complex 4E</div>
+</div>
+<div class="launch-item" data-launch="2026-04-26T14:00:00Z">
+  <div style="display:flex;justify-content:space-between;align-items:baseline">
+    <div class="ln">Falcon 9 Block 5 / Starlink Group 17-16</div>
+    <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+  </div>
+  <div class="lp">Apr 26 2026 14:00 UTC &middot; Space Launch Complex 4E</div>
+</div>
+  </div>
+  <div class="panel">
+    <div class="ptitle">// HEAVY LIFTERS</div>
+    <div class="launch-item" data-launch="2026-05-31T00:00:00Z">
+      <div class="section-lbl">STARSHIP</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div class="ln">Starship / Flight 12</div>
+        <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+      </div>
+      <div class="lp">May 31 2026 00:00 UTC</div>
+    </div>
+    <div class="launch-item" data-launch="">
+      <div class="section-lbl">ARTEMIS</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div class="ln">No upcoming data</div>
+        <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+      </div>
+      <div class="lp">ISO:TBD</div>
+    </div>
+    <div class="launch-item" data-launch="">
+      <div class="section-lbl">NEW GLENN</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <div class="ln">No upcoming data</div>
+        <div class="countdown" style="color:#ffb300;font-size:11px;font-weight:700"></div>
+      </div>
+      <div class="lp">ISO:TBD</div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="ptitle">// SPACE INDUSTRY</div>
+    <div class="hl" style="margin-bottom:12px">SpaceX launched the final GPS III satellite for the U.S. Space Force.</div>
+    <div class="section-lbl">AEROSPACE IPO PIPELINE</div>
+    <div class="dim-row">&middot; Firefly Aerospace &mdash; Nasdaq (FLY), ~$9.8B &mdash; debuted Aug 2025</div>
+    <div class="dim-row">&middot; York Space &mdash; NYSE, ~$4.75B &mdash; debuted Jan 2026</div>
+    <div class="dim-row">&middot; SpaceX &mdash; rumored IPO, valuation ~~$1.75T, raising ~$50–75B (targeting June 2026)</div>
+  </div>
+  <div class="panel" style="grid-column:1/-1">
+    <div class="ptitle">// GEOPOLITICAL WATCH</div>
+    <div style="margin-bottom:4px">
+      <span class="lbl">IRAN OUTGOING LAUNCHES (24H)</span>
+      <span class="val amber count-link" style="margin-left:10px" onclick="openMap()">5</span>
+    </div>
+    <div style="margin-bottom:8px">
+      <span class="lbl">STRIKES INSIDE IRAN (24H)</span>
+      <span class="val down count-link" style="margin-left:10px" onclick="openMap()">1</span>
+    </div>
+    <div class="section-lbl" style="margin-bottom:4px">US FOREIGN POLICY / TRUMP</div>
+    <div class="hl" style="margin-bottom:8px"><a target="_blank" rel="noopener" href='https://thehill.com/policy/international/5840635-us-iran-second-round-talks-shaky-ceasefire/'>Trump says ceasefire extension hinges on securing Iran agreement now</a> <a target="_blank" rel="noopener" href='https://www.npr.org/2026/04/20/nx-s1-5791618/how-trump-manages-relations-with-allies' class='story-num'>2</a></div>
+    <div class="section-lbl" style="margin-top:6px;margin-bottom:4px">MIDDLE EAST / IRAN</div>
+    <div class="hl" style="margin-bottom:12px"><a target="_blank" rel="noopener" href='https://www.timesofisrael.com/iran-war-creating-worst-energy-crisis-in-history-says-international-energy-agency/'>Iran war sparks worst energy crisis in history, IEA warns</a> <a target="_blank" rel="noopener" href='https://www.middleeasteye.net/live-blog/live-blog-update/eu-warn-against-early-nuclear-exits-effort-address-energy-crisis' class='story-num'>2</a></div>
+    <div class="section-lbl" style="margin-bottom:6px">TOP ACTIVE CONFLICT ZONES</div>
+    <div class='conf-row'><span class='conf-num'>1.</span> <span class='conf-loc'>Gaza/Israel</span> — Trump’s Board of Peace reportedly discussed Gaza reconstruction and port logistics with DP World as the war’s aftermath reshapes regional aid channels.</div><div class='conf-row'><span class='conf-num'>2.</span> <span class='conf-loc'>Kyiv/Ukraine</span> — Zelensky called the failure of senior US envoys to visit Kyiv disrespectful as Washington continues multiple Moscow trips.</div><div class='conf-row'><span class='conf-num'>3.</span> <span class='conf-loc'>Sana'a/Yemen</span> — Red Sea and regional drone warfare pressures are reinforcing US Navy demand for shipboard counter-drone lasers after recent Middle East combat lessons.</div><div class='conf-row'><span class='conf-num'>4.</span> <span class='conf-loc'>Strait of Hormuz</span> — Tankers are testing the passage while the US-Iran ceasefire nears expiry and blockade risks keep oil and shipping markets on edge.</div><div class='conf-row'><span class='conf-num'>5.</span> <span class='conf-loc'>West Bank</span> — A Palestinian boy in Hebron was killed after being struck by a vehicle in an Israeli minister’s security convoy.</div>
+  </div>
+
+<!-- Conflict map modal -->
+<div id="mapmodal" onclick="if(event.target===this)closeMap()">
+  <div id="mapwrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <span style="color:#2a6a3a;font-size:10px;letter-spacing:3px;text-transform:uppercase">// Active Conflict Map</span>
+      <button id="mapclose" onclick="closeMap()">&#x2715;</button>
+    </div>
+    <div id="czmap" style="flex:1;min-height:420px;border:1px solid #1a3a1a;border-radius:2px"></div>
+  </div>
+</div>
+<script>
+var czmap=null;
+function makeMarker(color,num){
+  return L.divIcon({className:'',html:'<div style="background:'+color+';color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;font-family:monospace;border:2px solid rgba(0,0,0,0.5);box-shadow:0 0 5px '+color+'">'+num+'</div>',iconSize:[22,22],iconAnchor:[11,11]});
+}
+var cityCoords={
+  'Gaza City':[31.50,34.47],'Gaza':[31.50,34.47],'Kyiv':[50.45,30.52],'Kiev':[50.45,30.52],
+  "Sana'a":[15.35,44.21],'Sanaa':[15.35,44.21],'Beirut':[33.89,35.50],'Damascus':[33.51,36.29],
+  'Baghdad':[33.34,44.40],'Erbil':[36.19,44.01],'Mosul':[36.34,43.13],
+  'Tel Aviv':[32.08,34.78],'Jerusalem':[31.77,35.21],'Haifa':[32.82,35.00],'Eilat':[29.56,34.95],
+  'Riyadh':[24.68,46.72],'Jeddah':[21.49,39.19],'Dhahran':[26.26,50.15],
+  'Dubai':[25.20,55.27],'Abu Dhabi':[24.45,54.37],'Sharjah':[25.34,55.39],
+  'Kuwait City':[29.37,47.98],'Doha':[25.29,51.53],'Manama':[26.21,50.59],
+  'Muscat':[23.61,58.59],'Aden':[12.78,45.03],'Hodeidah':[14.80,42.95],
+  'Tehran':[35.69,51.39],'Karaj':[35.83,50.93],'Isfahan':[32.66,51.68],
+  'Tabriz':[38.08,46.30],'Shiraz':[29.61,52.53],'Mashhad':[36.30,59.61],
+  'Natanz':[33.72,51.92],'Fordow':[34.86,50.97],'Arak':[34.09,49.69],
+  'Bandar Abbas':[27.18,56.27],'Bushehr':[28.92,50.82],'Ahvaz':[31.32,48.67],
+  'Qom':[34.64,50.88],'Yazd':[31.90,54.37],'Kharg':[29.24,50.32],
+  'Abadan':[30.34,48.30],'Dezful':[32.38,48.40],'Hamedan':[34.80,48.51],'Ilam':[33.64,46.43],
+  'Kharkiv':[49.99,36.23],'Odessa':[46.48,30.72],'Zaporizhzhia':[47.84,35.14],
+  'Ashdod':[31.82,34.64],'Sidon':[33.56,35.37],'Tyre':[33.27,35.20],
+  'Jubail':[27.00,49.66],'Fujairah':[25.12,56.34],'Aqaba':[29.53,35.00],
+  'Amman':[31.96,35.95],'Cairo':[30.04,31.24],'Ankara':[39.93,32.86]
+};
+function renderCities(csvStr,color,urlMap){
+  if(!csvStr||csvStr==='')return;
+  csvStr.split(',').map(function(s){return s.trim();}).filter(Boolean).forEach(function(city,i){
+    var c=cityCoords[city];
+    if(c){
+      var u=urlMap&&urlMap[city];
+      var html=u
+        ?'<b style="font-size:13px">'+city+'</b><br><a href="'+u+'" target="_blank" rel="noopener noreferrer" style="color:#4ab8ff;font-size:11px;text-decoration:none">open story &#x2197;</a>'
+        :'<b style="font-size:13px">'+city+'</b>';
+      L.marker(c,{icon:makeMarker(color,String(i+1))}).addTo(czmap).bindPopup(html);
+    }
+  });
+}
+function openMap(){
+  var m=document.getElementById('mapmodal');
+  m.classList.add('open');
+  if(!czmap){
+    czmap=L.map('czmap',{center:[32,42],zoom:4,zoomControl:true,attributionControl:false,scrollWheelZoom:true});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',{maxZoom:19}).addTo(czmap);
+    var outUrls={"Aqaba":"https://www.middleeasteye.net/live-blog/live-blog-update/trumps-board-peace-held-talks-dp-world-over-gaza-reconstruction","Beirut":"https://www.middleeasteye.net/explainers/history-israel-invasions-lebanon","Damascus":"https://www.middleeasteye.net/explainers/history-israel-invasions-lebanon","Dubai":"https://www.middleeasteye.net/news/donald-trumps-board-peace-held-talks-dp-world-over-gaza-reconstruction","Tel Aviv":"https://www.middleeasteye.net/explainers/history-israel-invasions-lebanon"};var inUrls={"Arak":"https://breakingdefense.com/2026/04/irans-targeting-of-our-thaad-tpy-2-radars-is-a-big-freaking-deal/"};
+    renderCities('Aqaba,Beirut,Damascus,Dubai,Tel Aviv','#ffb300',outUrls);
+    renderCities('Arak','#ff3333',inUrls);
+  }
+  setTimeout(function(){czmap.invalidateSize();},200);
+}
+function closeMap(){document.getElementById('mapmodal').classList.remove('open');}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMap();});
+</script>
+  <div class="panel" style="grid-column:1/-1">
+    <div class="ptitle">// PODCAST INTELLIGENCE</div>
+    <div class="pod-grid">
+      <div>
+        <div class="section-lbl">MOONSHOTS — PETER DIAMANDIS</div>
+        <div class="ln">Sam Altman’s Attack, Amazon vs. Starlink, and What Opus 4.7 Actually Means | #248 </div>
+        <div class="ld">2026-04-18 &nbsp;&middot;&nbsp; <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=LVvleNtllPk" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
+        <div class="pod-summary">Moonshots with Peter Diamandis — ‘Sam Altman’s Attack, Amazon vs. Starlink, and What Opus 4.7 Actually Means | #248’ — The hosts argue frontier models are getting materially better at parallelized agentic work, with Opus 4.7 seeming faster and more capable while showing reduced misaligned behavior. They say AI incidents and social backlash will keep rising, even as states begin asserting a right to compute instead of slowing deployment. The panel predicts elite cognitive labor will be commoditized within a couple of years, pushing smart young workers toward building companies rather than taking prestige jobs. They also frame AI plus robotics, brain-computer interfaces, longevity tech, and even new forms of religion or human speciation as part of a broader 100x era of change.</div>
+        <div class="section-lbl">KEY OPINIONS / PREDICTIONS</div>
+        <div class='dim-row'>① Big huge Princeton brain power is the most valuable thing on the planet right now, but it will become a complete commodity two years from today post ASI.</div><div class='dim-row'>② AI incidents are going up and are going to go way way up, so backlash is a trend that is not going to reverse.</div><div class='dim-row'>③ Legislatures will move toward an AI right to compute so businesses and people have a protected right to access AI capacity.</div><div class='dim-row'>④ AI plus vision sensing and gripping capability will let logistics and stock-picking robots do almost anything in warehouses and stores.</div><div class='dim-row'>⑤ Humanity is likely heading toward speciation again, with multiple humanoid branches emerging through upgrades like longevity tech and neural links.</div>
+      </div>
+      <div>
+        <div class="section-lbl">ALL-IN PODCAST</div>
+        <div class="ln">OpenAI's Identity Crisis, Datacenter Wars, Market Up on Iran News, Mamdani's First Tax, Swalwell Out </div>
+        <div class="ld">2026-04-17 &nbsp;&middot;&nbsp; <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=SFdqX7IY7RY" style="color:#2a6a3a">&#9654; watch</a></div>
+        <div class="section-lbl" style="margin-top:10px">EXECUTIVE SUMMARY</div>
+        <div class="pod-summary">All-In Podcast — ‘OpenAI's Identity Crisis, Datacenter Wars, Market Up on Iran News, Mamdani's First Tax, Swalwell Out’ — The hosts argue New York-style wealth and property taxes will drive capital out of blue states because investors will no longer trust those jurisdictions to leave assets alone. On AI, they say Anthropic is pulling ahead by focusing on enterprise coding demand while OpenAI risks losing ground unless it sharpens its strategy around paid business use cases. They also claim opposition to data centers is being amplified by anti-AI doomer networks using local water and energy fears as a proxy argument against progress. In markets, they describe investors as pricing the Iran conflict as a limited Trump excursion that is moving toward resolution, even though the signal set remains unusually contradictory.</div>
+        <div class="section-lbl">KEY OPINIONS / PREDICTIONS</div>
+        <div class='dim-row'>① Property is not safe in blue states and wealthy people will increasingly move their money elsewhere if politicians keep taxing real estate and wealth.</div><div class='dim-row'>② Anthropic could build an insurmountable lead over the next one or two years because businesses are willing to pay metered coding token revenue like electricity.</div><div class='dim-row'>③ OpenAI needs to get more focused specifically on coding and enterprise or it risks losing the AI race.</div><div class='dim-row'>④ Much of the anti-data-center nimbyism has been astroturfed by doomer groups that could not sell Terminator fears directly, so they pivoted to water and energy complaints.</div><div class='dim-row'>⑤ The market is trading on the belief that the Iran war is an excursion, as Trump put it, and that it is on its way to being resolved.</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">JARVIS INTELLIGENCE SYSTEM &nbsp;&middot;&nbsp; AUTO-GENERATED &nbsp;&middot;&nbsp; 2026-04-21</div>
+<script>
+(function(){
+  function tick(){
+    document.querySelectorAll('[data-launch]').forEach(function(el){
+      var iso=el.dataset.launch;
+      var cd=el.querySelector('.countdown');
+      if(!cd||!iso||iso===''||iso==='TBD')return;
+      var t=new Date(iso)-Date.now();
+      if(isNaN(t)){return;}
+      if(t<=0){cd.textContent='LAUNCHED';return;}
+      var d=Math.floor(t/86400000);
+      var h=Math.floor((t%86400000)/3600000);
+      var m=Math.floor((t%3600000)/60000);
+      var s=Math.floor((t%60000)/1000);
+      cd.textContent='T\u2212'+d+'d '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    });
+  }
+  tick();setInterval(tick,1000);
+})();
+</script>
+<script>
+(function(){
+  var MAP={
+    brent:{pid:'brent-price',cid:'brent-chg',suf:'/bbl'},
+    wti:  {pid:'wti-price',  cid:'wti-chg',  suf:'/bbl'},
+    tsla: {pid:'tsla-price', cid:'tsla-chg', suf:''},
+    sp500:{pid:'sp500-price',cid:'sp500-chg',suf:''}
+  };
+  function apply(data){
+    for(var k in MAP){
+      var t=MAP[k],q=data[k];
+      if(!q)continue;
+      var pe=document.getElementById(t.pid),ce=document.getElementById(t.cid);
+      if(!pe||!ce)continue;
+      pe.textContent='$'+q.price.toFixed(2)+t.suf;
+      ce.textContent=(q.chg>=0?'\u25b2':'\u25bc')+Math.abs(q.chg).toFixed(2)+'%';
+      ce.className=q.chg>=0?'up':'down';
+    }
+    var mode=data.mode||'full';
+    if(mode==='oil'||mode==='off'){
+      // Off-hours: suppress DATA timestamp (equities show last close, not live)
+      document.querySelectorAll('.mkt-updated').forEach(function(u){u.textContent='';});
+    } else {
+      var mktTime=0;
+      for(var k in MAP){if(data[k]&&data[k].time&&data[k].time>mktTime)mktTime=data[k].time;}
+      if(mktTime){
+        var d=new Date(mktTime*1000);
+        var ts=String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+        document.querySelectorAll('.mkt-updated').forEach(function(u){u.textContent='DATA \u21bb '+ts;});
+      }
+    }
+  }
+  function run(){fetch('./prices.json?_='+Date.now()).then(function(r){return r.json();}).then(apply).catch(function(){});}
+  run();setInterval(run,5*60*1000);
+})();
+</script>
+</body>
+</html>
